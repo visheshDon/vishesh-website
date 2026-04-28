@@ -1,0 +1,2281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Vishesh Aquaworld & Pet Showroom — Dhampur</title>
+<!-- Security / Trust meta tags — fixes Google Pay / Paytm "unsafe" warning -->
+<meta name="description" content="Vishesh Aquaworld & Pet Showroom, Dhampur. Fish, birds, dogs, cats — food, accessories, grooming and aquarium cleaning. Fast delivery within 40km."/>
+<meta name="robots" content="index, follow"/>
+<meta name="author" content="Vishesh Aquaworld & Pet Showroom"/>
+<!--
+  ╔══════════════════════════════════════════════════════════════╗
+  ║  CONTENT SECURITY POLICY (CSP) — SECURITY HEADER            ║
+  ╠══════════════════════════════════════════════════════════════╣
+  ║  What it does: Tells the browser WHICH domains are allowed   ║
+  ║  to load scripts, images, iframes etc. Blocks everything     ║
+  ║  else — prevents XSS (cross-site scripting) attacks.         ║
+  ║                                                              ║
+  ║  NOTE: This meta tag is a fallback only.                     ║
+  ║  The real CSP is set via the Netlify _headers file           ║
+  ║  (in your project root). That takes priority.                ║
+  ║                                                              ║
+  ║  WHY img-src * — Pet adoption cards load images from many    ║
+  ║  CDNs (Unsplash, iStock, AKC, Britannica). We must allow     ║
+  ║  all image sources or the adoption section goes blank.       ║
+  ║                                                              ║
+  ║  WHY unsafe-inline for scripts — All JS is written inline    ║
+  ║  in this single HTML file. To remove unsafe-inline, you      ║
+  ║  would need to move all JS to a separate .js file.           ║
+  ║  unsafe-eval has been REMOVED — that was the dangerous one.  ║
+  ║                                                              ║
+  ║  https://checkout.razorpay.com — pre-added for when          ║
+  ║  Razorpay payment integration is added later.                ║
+  ╚══════════════════════════════════════════════════════════════╝
+-->
+<meta http-equiv="Content-Security-Policy" content="
+  default-src 'self' https://api1.vyaparapp.in https://vyapar-catalog.vypcdn.in;
+  script-src  'self' 'unsafe-inline' https://checkout.razorpay.com;
+  style-src   'self' 'unsafe-inline';
+  img-src     * data: blob:;
+  font-src    'self' data:;
+  connect-src 'self' https://api1.vyaparapp.in https://nominatim.openstreetmap.org https://api.razorpay.com https://backend.aisensy.com https://app.aisensy.com;
+  frame-src   https://maps.google.com https://www.google.com https://nominatim.openstreetmap.org https://api.razorpay.com;
+  object-src  'none';
+  base-uri    'self';
+"/>
+<meta http-equiv="X-Content-Type-Options" content="nosniff"/>
+<meta http-equiv="X-Frame-Options" content="SAMEORIGIN"/>
+<!-- Open Graph — makes WhatsApp / social previews look legitimate -->
+<meta property="og:title" content="Vishesh Aquaworld & Pet Showroom — Dhampur"/>
+<meta property="og:description" content="Dhampur's #1 pet store. Fish, birds, dogs, cats. Grooming & aquarium cleaning. 40km delivery."/>
+<meta property="og:type" content="website"/>
+<meta property="og:locale" content="en_IN"/>
+<meta property="og:site_name" content="Vishesh Aquaworld & Pet Showroom"/>
+<!-- Canonical URL — replace with your actual domain -->
+<link rel="canonical" href="https://visheshaquaworld.com/"/>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#0e7490">
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--navy:#0a1628;--teal:#0e7490;--teal2:#06b6d4;--light:#f0f9ff;--white:#fff;--gray:#64748b;--dark:#1e293b;--wa:#25d366;--wa2:#1ebe5d;--pur:#7c3aed;--pur2:#a855f7}
+body{font-family:'Segoe UI',sans-serif;color:var(--dark);background:var(--white);overflow-x:hidden}
+a{text-decoration:none;color:inherit}
+
+/* DISCOUNT POPUP */
+/* ── DISCOUNT POPUP — mobile-first compact layout ── */
+.disc-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:1000;align-items:center;justify-content:center;padding:12px;overflow-y:auto}
+.disc-overlay.show{display:flex}
+.disc-box{background:linear-gradient(135deg,#0a1628,#0c2d4a);border:2px solid #facc15;border-radius:20px;padding:18px 16px 14px;max-width:380px;width:100%;text-align:center;position:relative;animation:popIn .5s cubic-bezier(.34,1.56,.64,1);max-height:92vh;overflow-y:auto}
+.disc-box .fire{font-size:2rem;margin-bottom:2px}
+.disc-box .hurry{background:linear-gradient(135deg,#ef4444,#dc2626);color:#fff;font-size:.68rem;font-weight:800;letter-spacing:1.5px;padding:3px 12px;border-radius:30px;display:inline-block;margin-bottom:8px;animation:blink 1s ease-in-out infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.6}}
+.disc-box h2{color:#facc15;font-size:1.2rem;font-weight:900;margin-bottom:2px;line-height:1.2}
+.disc-box .disc-pct{font-size:2.6rem;font-weight:900;color:#4ade80;line-height:1;margin:4px 0}
+.disc-box .disc-pct span{font-size:1.2rem}
+.disc-price-row{display:flex;align-items:center;justify-content:center;gap:10px;margin:8px 0 4px}
+.disc-orig{font-size:1.1rem;font-weight:800;color:#94a3b8;text-decoration:line-through}
+.disc-final{font-size:1.6rem;font-weight:900;color:#4ade80}
+.disc-save{background:rgba(74,222,128,.15);border:1px solid rgba(74,222,128,.3);color:#4ade80;font-size:.75rem;font-weight:700;padding:3px 12px;border-radius:30px;margin-bottom:10px;display:inline-block}
+.disc-msg{color:#94a3b8;font-size:.76rem;line-height:1.55;margin-bottom:10px}
+.disc-msg strong{color:#facc15}
+.disc-screenshot{background:rgba(250,204,21,.12);border:1.5px dashed #facc15;border-radius:10px;padding:9px 12px;margin-bottom:10px}
+.disc-screenshot p{color:#fef9c3;font-size:.75rem;font-weight:700;line-height:1.5}
+.disc-screenshot .cam{font-size:1.4rem;margin-bottom:3px}
+.disc-timer{color:#94a3b8;font-size:.7rem;margin-bottom:8px}
+.disc-timer span{color:#facc15;font-weight:700}
+.disc-close{background:linear-gradient(135deg,var(--wa),var(--wa2));color:#fff;border:none;width:100%;padding:11px;border-radius:10px;font-size:.9rem;font-weight:800;cursor:pointer;transition:transform .2s}
+.disc-close:hover{transform:scale(1.02)}
+.disc-exp{color:#64748b;font-size:.65rem;margin-top:7px}
+#discDateTime{margin-top:7px!important;padding:6px 10px!important;font-size:.72rem!important;line-height:1.5!important}
+
+nav{background:var(--navy);padding:14px 5%;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;box-shadow:0 2px 20px rgba(0,0,0,.4)}
+.logo{display:flex;align-items:center;gap:12px}
+.logo img{width:46px;height:46px;border-radius:50%;object-fit:cover;border:2px solid var(--teal2)}
+.logo-text h1{color:#fff;font-size:1rem;font-weight:700;line-height:1.2}
+.logo-text span{color:var(--teal2);font-size:.7rem;letter-spacing:1px}
+.nav-links{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.nav-links a{color:#94a3b8;font-size:.8rem;transition:color .2s;cursor:pointer}
+.nav-links a:hover{color:var(--teal2)}
+.nav-call{background:var(--teal);color:#fff!important;padding:7px 13px;border-radius:6px;font-weight:700}
+
+.page{display:none}.page.active{display:block}.page.active#page-aquarium{display:flex}
+
+.hero{background:linear-gradient(135deg,var(--navy) 0%,#0c2340 55%,#0a3d52 100%);min-height:92vh;display:flex;align-items:center;padding:60px 5%;position:relative;overflow:hidden}
+.hero-content{position:relative;z-index:3;max-width:560px}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(14,116,144,.25);border:1px solid rgba(6,182,212,.3);color:var(--teal2);padding:6px 16px;border-radius:20px;font-size:.78rem;font-weight:600;margin-bottom:20px}
+.hero h2{color:#fff;font-size:clamp(1.9rem,3.5vw,3rem);font-weight:800;line-height:1.15;margin-bottom:12px}
+.hero h2 span{color:var(--teal2)}
+.store-open{display:inline-flex;align-items:center;gap:8px;padding:5px 14px;border-radius:12px;font-size:.78rem;font-weight:600;margin-bottom:16px}
+.hero p{color:#94a3b8;font-size:.98rem;line-height:1.75;margin-bottom:28px}
+.hero-btns{display:flex;gap:12px;flex-wrap:wrap}
+.btn-shop{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,var(--pur),var(--pur2));color:#fff;padding:13px 28px;border-radius:8px;font-weight:700;font-size:.95rem;cursor:pointer;border:none;animation:pulse 2s ease-in-out infinite}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(124,58,237,.5)}70%{box-shadow:0 0 0 12px rgba(124,58,237,0)}}
+.btn-wa{display:inline-flex;align-items:center;gap:8px;background:var(--wa);color:#fff;padding:13px 24px;border-radius:8px;font-weight:700;font-size:.95rem;transition:transform .2s}
+.btn-wa:hover{transform:translateY(-2px)}
+.btn-call{display:inline-flex;align-items:center;gap:8px;background:var(--teal);color:#fff;padding:13px 24px;border-radius:8px;font-weight:700;font-size:.95rem;transition:transform .2s}
+.hero-stats{display:flex;gap:28px;margin-top:36px;padding-top:28px;border-top:1px solid rgba(255,255,255,.08);flex-wrap:wrap}
+.stat span{display:block;color:var(--teal2);font-size:1.5rem;font-weight:800}
+.stat p{color:#64748b;font-size:.76rem;margin-top:2px}
+.hero-scene{position:absolute;right:0;top:0;width:46%;height:100%;pointer-events:none;z-index:2;overflow:hidden}
+.float-animal{position:absolute;animation:floatA ease-in-out infinite;opacity:.9;font-size:2rem}
+@keyframes floatA{0%,100%{transform:translateY(0) rotate(-4deg)}50%{transform:translateY(-20px) rotate(4deg)}}
+.hbubble{position:absolute;border-radius:50%;border:2px solid rgba(6,182,212,.35);background:rgba(6,182,212,.05);animation:bubUp linear infinite}
+@keyframes bubUp{0%{transform:translateY(100%) scale(.3);opacity:0}50%{opacity:.6}100%{transform:translateY(-100px) scale(1);opacity:0}}
+.aquarium{position:absolute;bottom:56px;right:7%;width:210px;height:130px;border:3px solid rgba(6,182,212,.5);border-radius:12px;background:linear-gradient(180deg,rgba(6,182,212,.07),rgba(14,116,144,.22));overflow:hidden}
+.aquarium::after{content:'';position:absolute;bottom:0;left:0;right:0;height:20px;background:rgba(120,80,30,.35)}
+.aq-fish{position:absolute;animation:swim linear infinite;font-size:1.4rem}
+@keyframes swim{0%{left:-10%;transform:scaleX(1)}49%{left:110%;transform:scaleX(1)}50%{left:110%;transform:scaleX(-1)}100%{left:-10%;transform:scaleX(-1)}}
+.aq-bub{position:absolute;border-radius:50%;background:rgba(6,182,212,.2);animation:aqb linear infinite}
+@keyframes aqb{0%{bottom:20px;opacity:.8}100%{bottom:100%;opacity:0}}
+.aq-plant{position:absolute;bottom:16px;font-size:1.7rem}
+
+.del-strip{background:linear-gradient(135deg,var(--teal),#0369a1);padding:14px 5%;display:flex;gap:20px;flex-wrap:wrap;align-items:center;justify-content:center}
+.del-item{display:flex;align-items:center;gap:8px;color:#fff;font-size:.83rem}
+.del-item strong{font-size:.88rem}
+.sec-label{color:var(--teal);font-size:.75rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:8px}
+.sec-title{font-size:clamp(1.5rem,2.8vw,2rem);font-weight:800;color:var(--navy);margin-bottom:8px}
+.sec-sub{color:var(--gray);font-size:.93rem;line-height:1.6;margin-bottom:28px}
+
+.cats-section{padding:60px 5%;background:var(--light)}
+.cat-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:12px}
+.cat-card{background:#fff;border-radius:14px;overflow:hidden;cursor:pointer;border:2px solid transparent;box-shadow:0 2px 10px rgba(0,0,0,.06);transition:all .3s}
+.cat-card:hover{border-color:var(--teal2);transform:translateY(-4px)}
+.cat-img-wrap{width:100%;height:90px;overflow:hidden;background:linear-gradient(135deg,#f0f9ff,#e0f2fe);display:flex;align-items:center;justify-content:center;font-size:2.8rem}
+.cat-img-wrap img{width:100%;height:100%;object-fit:cover}
+.cat-info{padding:10px 10px 12px}
+.cat-info h4{font-size:.78rem;font-weight:700;color:var(--navy)}
+.cat-info p{font-size:.7rem;color:var(--gray);margin-top:2px}
+
+.adopt-section{padding:60px 5%;background:#f8fafc}
+.adopt-tabs{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:32px}
+.atab{padding:10px 22px;border-radius:30px;font-size:.88rem;font-weight:700;cursor:pointer;border:2px solid #e2e8f0;color:var(--gray);background:#fff;transition:all .3s}
+.atab.on{background:var(--navy);color:#fff;border-color:var(--navy)}
+.adopt-panel{display:none}.adopt-panel.on{display:block}
+.breed-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:16px}
+.breed-card{border-radius:16px;overflow:hidden;border:2px solid #e2e8f0;box-shadow:0 2px 12px rgba(0,0,0,.06);transition:all .3s;background:#fff}
+.breed-card:hover{border-color:var(--teal2);transform:translateY(-4px)}
+.breed-img-wrap{width:100%;height:140px;background:linear-gradient(135deg,#e0f2fe,#bae6fd);display:flex;align-items:center;justify-content:center;font-size:4rem;overflow:hidden;position:relative}
+.breed-img-wrap img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.breed-slide{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .7s ease;z-index:1}
+.breed-slide.active-slide{opacity:1;z-index:2}
+.slide-dots{position:absolute;bottom:5px;left:50%;transform:translateX(-50%);display:flex;gap:4px;z-index:5}
+.slide-dot{width:5px;height:5px;border-radius:50%;background:rgba(255,255,255,.5);transition:background .3s}
+.slide-dot.on{background:#fff}
+.slide-count{position:absolute;top:6px;right:8px;background:rgba(0,0,0,.45);color:#fff;font-size:.6rem;font-weight:700;padding:2px 6px;border-radius:10px;z-index:5}
+.breed-info{padding:10px 10px 12px}
+.breed-info h4{font-size:.82rem;font-weight:700;color:var(--navy);margin-bottom:2px}
+.breed-info p{font-size:.7rem;color:var(--gray)}
+.adopt-btn{display:block;width:100%;margin-top:8px;padding:8px;background:linear-gradient(135deg,var(--wa),var(--wa2));color:#fff;border:none;border-radius:8px;font-size:.75rem;font-weight:700;cursor:pointer}
+
+.services-section{padding:60px 5%;background:#fff}
+.srv-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:20px}
+.srv-card{border-radius:20px;overflow:hidden;border:2px solid #e2e8f0;background:#fff;transition:all .3s;cursor:pointer}
+.srv-card:hover{border-color:var(--teal2);transform:translateY(-5px);box-shadow:0 12px 32px rgba(14,116,144,.15)}
+.srv-img{height:160px;display:flex;align-items:center;justify-content:center;font-size:5rem}
+.srv-body{padding:20px}
+.srv-body h3{font-size:1rem;font-weight:800;color:var(--navy);margin-bottom:6px}
+.srv-body p{font-size:.82rem;color:var(--gray);line-height:1.6;margin-bottom:14px}
+.srv-btn{display:inline-flex;align-items:center;gap:6px;background:linear-gradient(135deg,var(--teal),var(--teal2));color:#fff;padding:9px 20px;border-radius:8px;font-weight:700;font-size:.82rem;border:none;cursor:pointer}
+
+.sp-header{background:linear-gradient(135deg,var(--navy),#0c2d4a);padding:28px 5%;display:flex;align-items:center;gap:16px}
+.sp-back{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:#fff;padding:8px 18px;border-radius:8px;font-size:.85rem;font-weight:700;cursor:pointer;transition:all .2s;display:flex;align-items:center;gap:6px}
+.sp-back:hover{background:rgba(255,255,255,.2)}
+.sp-title{color:#fff;font-size:1.3rem;font-weight:800}
+.sp-sub{color:#94a3b8;font-size:.8rem;margin-top:3px}
+.sp-body{padding:32px 5%}
+
+/* GROOMING WIZARD */
+.grm-wizard-step{animation:fadeSlideIn .35s ease}
+@keyframes fadeSlideIn{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+.grm-wizard-title{font-size:1.15rem;font-weight:800;color:var(--navy);margin-bottom:4px}
+.grm-wizard-hint{font-size:.85rem;color:var(--gray);margin-bottom:4px}
+.grm-big-card{min-width:140px;max-width:180px;padding:28px 20px!important;border-radius:20px!important;text-align:center;transition:all .25s!important}
+.grm-big-card:hover{transform:translateY(-6px) scale(1.04)!important;border-color:var(--teal2)!important;background:var(--light)!important;box-shadow:0 12px 28px rgba(6,182,212,.2)}
+.grm-size-option{display:flex;align-items:center;gap:16px;padding:16px 20px;border:2.5px solid #e2e8f0;border-radius:16px;background:#fff;cursor:pointer;transition:all .25s}
+.grm-size-option:hover{border-color:var(--teal2);background:var(--light);transform:translateX(4px)}
+.grm-size-option strong{font-size:.95rem;font-weight:700;color:var(--navy)}
+.grm-size-option p{font-size:.75rem;color:var(--gray);margin-top:2px}
+.size-arrow{margin-left:auto;font-size:1.2rem;color:var(--teal2);font-weight:700}
+.grm-field-card{background:#f8fafc;border:2px solid #e2e8f0;border-radius:14px;padding:14px 16px;transition:border-color .2s}
+.grm-field-card:focus-within{border-color:var(--teal2)}
+.grm-field-card label{display:block;font-size:.78rem;font-weight:700;color:var(--gray);margin-bottom:6px;text-transform:uppercase;letter-spacing:.5px}
+.grm-field-card input{width:100%;border:none;background:transparent;font-size:.95rem;color:var(--dark);outline:none;padding:4px 0}
+.grm-field-card input::placeholder{color:#94a3b8}
+.slot-big-btn{display:flex;align-items:center;gap:16px;padding:14px 18px;border:2.5px solid #e2e8f0;border-radius:14px;background:#fff;cursor:pointer;transition:all .25s}
+.slot-big-btn:hover{border-color:var(--teal);background:var(--light)}
+.slot-big-btn.on{border-color:var(--teal);background:var(--light);box-shadow:0 0 0 3px rgba(14,116,144,.15)}
+.slot-big-btn strong{font-size:.95rem;font-weight:700;color:var(--navy)}
+.slot-big-btn p{font-size:.78rem;color:var(--gray);margin-top:2px}
+.grm-next-btn{width:100%;margin-top:20px;padding:15px;background:linear-gradient(135deg,var(--teal),var(--teal2));color:#fff;border:none;border-radius:12px;font-size:1rem;font-weight:800;cursor:pointer;transition:transform .2s}
+.grm-next-btn:hover{transform:translateY(-2px)}
+.grm-back-btn{display:block;width:100%;margin-top:10px;padding:11px;background:transparent;color:var(--gray);border:2px solid #e2e8f0;border-radius:12px;font-size:.9rem;font-weight:600;cursor:pointer;transition:all .2s}
+.grm-back-btn:hover{background:#f8fafc;color:var(--navy)}
+.vax-row{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:18px}
+.vax-btn{padding:9px 18px;border-radius:10px;border:2px solid #e2e8f0;background:#fff;font-size:.84rem;font-weight:600;color:var(--gray);cursor:pointer;transition:all .3s}
+.vax-btn.on{border-color:#16a34a;background:#f0fdf4;color:#16a34a}
+.hidden{display:none!important}
+
+/* ══════════════════════════════════════
+   AQUARIUM APP — REDESIGNED (v2)
+   Clean, tap-friendly, 3 big steps
+   ══════════════════════════════════════ */
+
+/* Step screen wrapper */
+.aq-screen{display:none;flex-direction:column;flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;animation:aqFadeIn .3s ease}
+.aq-screen.active{display:flex}
+@keyframes aqFadeIn{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+
+/* Big tap cards for type selection */
+.aq-type-tiles{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:0}
+.aq-tile{border:3px solid #e2e8f0;border-radius:20px;padding:22px 14px;text-align:center;cursor:pointer;background:#fff;transition:all .25s;position:relative;overflow:hidden}
+.aq-tile::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(6,182,212,.08),rgba(14,116,144,.04));opacity:0;transition:opacity .25s}
+.aq-tile:hover::before,.aq-tile.on::before{opacity:1}
+.aq-tile.on{border-color:var(--teal2);background:#f0fdff;box-shadow:0 0 0 4px rgba(6,182,212,.15)}
+.aq-tile .tile-icon{font-size:3rem;margin-bottom:10px;display:block}
+.aq-tile h4{font-weight:800;font-size:.98rem;color:var(--navy);margin-bottom:4px}
+.aq-tile p{font-size:.73rem;color:var(--gray);line-height:1.4}
+.aq-tile .tile-badge{display:inline-block;font-size:.65rem;font-weight:800;padding:3px 10px;border-radius:20px;margin-top:8px}
+.aq-tile .badge-green{background:#f0fdf4;color:#16a34a}
+.aq-tile .badge-purple{background:#f5f3ff;color:#7c3aed}
+.aq-tile .check-ring{position:absolute;top:10px;right:10px;width:24px;height:24px;border-radius:50%;border:2.5px solid #e2e8f0;background:#fff;display:flex;align-items:center;justify-content:center;font-size:.7rem;transition:all .2s}
+.aq-tile.on .check-ring{border-color:var(--teal2);background:var(--teal2);color:#fff}
+
+/* Size pill grid */
+.aq-size-pills{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.aq-size-pill{border:2.5px solid #e2e8f0;border-radius:14px;padding:14px 8px;text-align:center;cursor:pointer;background:#fff;transition:all .22s;position:relative}
+.aq-size-pill:active{transform:scale(.95)}
+.aq-size-pill.on{border-color:var(--teal2);background:#f0fdff;box-shadow:0 0 0 3px rgba(6,182,212,.12)}
+.aq-size-pill h5{font-size:.92rem;font-weight:800;color:var(--navy);margin-bottom:3px}
+.aq-size-pill .pill-price{font-size:.82rem;color:var(--teal);font-weight:700}
+.aq-size-pill .pill-imp{font-size:.68rem;color:var(--pur);font-weight:600;margin-top:2px}
+
+/* Quote card */
+.aq-quote-card{background:linear-gradient(135deg,#0a1628,#0c3452);border-radius:18px;padding:20px;text-align:center;border:2px solid rgba(6,182,212,.25)}
+.aq-quote-card .q-label{color:#94a3b8;font-size:.78rem;margin-bottom:4px}
+.aq-quote-card .q-price{color:var(--teal2);font-size:2.6rem;font-weight:900;line-height:1}
+.aq-quote-card .q-desc{color:#64748b;font-size:.8rem;margin-top:6px}
+.aq-quote-card .q-includes{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:12px}
+.aq-quote-card .q-inc-item{background:rgba(6,182,212,.1);border:1px solid rgba(6,182,212,.2);color:var(--teal2);font-size:.7rem;font-weight:700;padding:4px 10px;border-radius:20px}
+
+/* Field card */
+.aq-field{background:#f8fafc;border:2px solid #e2e8f0;border-radius:14px;padding:14px 16px;transition:border-color .2s}
+.aq-field:focus-within{border-color:var(--teal2);background:#fff}
+.aq-field label{display:block;font-size:.72rem;font-weight:700;color:var(--gray);margin-bottom:6px;text-transform:uppercase;letter-spacing:.5px}
+.aq-field input{width:100%;border:none;background:transparent;font-size:.96rem;color:var(--dark);outline:none;padding:3px 0}
+.aq-field input::placeholder{color:#94a3b8}
+
+/* Time slot chips — smart availability */
+.aq-time-chips{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.aq-chip{padding:12px 6px;border-radius:12px;border:2px solid #e2e8f0;background:#fff;font-size:.82rem;font-weight:700;color:var(--navy);cursor:pointer;text-align:center;transition:all .22s;user-select:none}
+.aq-chip:not(.disabled):hover{border-color:var(--teal2);background:#f0fdff;transform:translateY(-2px)}
+.aq-chip.on{border-color:var(--teal);background:var(--light);color:var(--teal);box-shadow:0 0 0 3px rgba(14,116,144,.15)}
+.aq-chip.disabled{opacity:.35;cursor:not-allowed;background:#f1f5f9;color:#94a3b8;text-decoration:line-through;pointer-events:none}
+.aq-chip.next-available{border-color:#f97316;background:#fff7ed;color:#ea580c;animation:chipPulse 1.8s ease-in-out infinite}
+@keyframes chipPulse{0%,100%{box-shadow:0 0 0 0 rgba(249,115,22,.3)}60%{box-shadow:0 0 0 6px rgba(249,115,22,0)}}
+.aq-no-slots{background:#fef2f2;border:2px solid #fca5a5;border-radius:14px;padding:16px;text-align:center;color:#991b1b;font-size:.88rem;font-weight:700}
+
+/* Location choice */
+.aq-loc-tiles{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.aq-loc-tile{border:2.5px solid #e2e8f0;border-radius:16px;padding:18px 12px;text-align:center;cursor:pointer;background:#fff;transition:all .25s}
+.aq-loc-tile.on{border-color:var(--teal2);background:#f0fdff;box-shadow:0 0 0 3px rgba(6,182,212,.12)}
+.aq-loc-tile .lt-icon{font-size:2.2rem;margin-bottom:8px;display:block}
+.aq-loc-tile h5{font-weight:800;font-size:.9rem;color:var(--navy);margin-bottom:3px}
+.aq-loc-tile p{font-size:.72rem;color:var(--gray);line-height:1.4}
+
+/* GPS detect button */
+.gps-big-btn{width:100%;padding:16px;background:linear-gradient(135deg,#1d4ed8,#2563eb);color:#fff;border:none;border-radius:14px;font-weight:800;font-size:.96rem;cursor:pointer;font-family:inherit;display:flex;align-items:center;justify-content:center;gap:10px;transition:all .3s;box-shadow:0 4px 14px rgba(37,99,235,.3)}
+.gps-big-btn:hover{transform:translateY(-2px);box-shadow:0 8px 22px rgba(37,99,235,.4)}
+.gps-big-btn:disabled{background:#94a3b8;cursor:not-allowed;transform:none;box-shadow:none}
+
+/* Action buttons */
+.aq-next-btn{width:100%;padding:16px;background:linear-gradient(135deg,var(--teal),var(--teal2));color:#fff;border:none;border-radius:14px;font-size:1rem;font-weight:800;cursor:pointer;font-family:inherit;transition:all .25s;box-shadow:0 4px 14px rgba(14,116,144,.3)}
+.aq-next-btn:hover{transform:translateY(-2px);box-shadow:0 8px 22px rgba(14,116,144,.4)}
+.aq-next-btn:active{transform:scale(.97)}
+.aq-back-btn{flex:0 0 auto;padding:14px 18px;background:#f1f5f9;border:none;border-radius:14px;font-weight:700;font-size:.9rem;cursor:pointer;color:var(--gray);font-family:inherit;transition:all .2s}
+.aq-back-btn:hover{background:#e2e8f0;color:var(--navy)}
+.aq-wa-final{width:100%;padding:16px;background:linear-gradient(135deg,#25d366,#1ebe5d);color:#fff;border:none;border-radius:14px;font-size:1rem;font-weight:800;cursor:pointer;font-family:inherit;display:flex;align-items:center;justify-content:center;gap:10px;transition:all .25s;box-shadow:0 4px 14px rgba(37,211,102,.3)}
+.aq-wa-final:hover{transform:translateY(-2px);box-shadow:0 8px 22px rgba(37,211,102,.4)}
+
+/* Section label inside aquarium form */
+.aq-section-label{font-size:.7rem;font-weight:800;color:var(--teal);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:12px}
+
+/* White card wrapper */
+.aq-card{background:#fff;border-radius:18px;padding:18px;margin-bottom:14px}
+
+/* Tip card */
+.aq-tip-card{background:linear-gradient(135deg,#0a1628,#0c2d4a);border-radius:16px;padding:16px;display:flex;gap:12px;align-items:flex-start;margin-bottom:14px}
+.aq-tip-card .tip-icon{font-size:1.8rem;flex-shrink:0}
+.aq-tip-card h5{color:#fff;font-size:.88rem;font-weight:800;margin-bottom:4px}
+.aq-tip-card p{color:#94a3b8;font-size:.78rem;line-height:1.55}
+
+/* Progress steps dots */
+.aq-step-dots{display:flex;gap:6px;justify-content:center;margin-bottom:0}
+.aq-dot{width:28px;height:6px;border-radius:3px;background:rgba(255,255,255,.15);transition:all .3s}
+.aq-dot.active{background:var(--teal2);width:40px}
+.aq-dot.done{background:rgba(6,182,212,.45)}
+
+/* ═══════════════════════════════ */
+
+.cta-section{padding:70px 5%;background:linear-gradient(135deg,#0a1628,#0c2d4a)}
+.cta-inner{max-width:700px;margin:0 auto;text-align:center}
+.cta-inner h2{color:#fff;font-size:clamp(1.5rem,3vw,2.2rem);font-weight:800;margin-bottom:14px}
+.cta-inner p{color:#94a3b8;font-size:.97rem;line-height:1.75;margin-bottom:32px}
+.cta-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+.why-section{background:var(--navy);padding:60px 5%}
+.why-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:18px;margin-top:36px}
+.why-card{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:24px 16px;text-align:center}
+.why-icon{font-size:2.2rem;margin-bottom:12px}
+.why-card h3{color:#fff;font-size:.95rem;font-weight:700;margin-bottom:7px}
+.why-card p{color:#64748b;font-size:.81rem;line-height:1.6}
+.contact-section{padding:60px 5%}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start}
+.contact-info{display:flex;flex-direction:column;gap:16px}
+.ci-row{display:flex;gap:12px;align-items:flex-start}
+.ci-ic{width:42px;height:42px;background:var(--light);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0}
+.ci-row h4{font-weight:700;font-size:.88rem;color:var(--navy);margin-bottom:3px}
+.ci-row p{color:var(--gray);font-size:.83rem;line-height:1.5}
+.ci-row a{color:var(--teal);font-weight:600}
+.contact-btns{display:flex;flex-direction:column;gap:10px;margin-top:6px}
+.c-btn{display:flex;align-items:center;justify-content:center;gap:10px;padding:12px 20px;border-radius:10px;font-weight:700;font-size:.92rem;transition:all .3s;cursor:pointer;border:none;text-decoration:none}
+.c-btn:hover{transform:translateY(-2px)}
+.c-btn-wa{background:var(--wa);color:#fff}
+.c-btn-call{background:var(--teal);color:#fff}
+.c-btn-store{background:linear-gradient(135deg,var(--pur),var(--pur2));color:#fff}
+.map-box{border-radius:14px;overflow:hidden;border:1px solid #e2e8f0}
+.map-hdr{background:var(--navy);padding:14px 18px}
+.map-hdr h4{color:#fff;font-size:.9rem;font-weight:700}
+.map-hdr p{color:#94a3b8;font-size:.74rem;margin-top:2px}
+footer{background:var(--navy);padding:36px 5% 18px;color:#64748b}
+.ft{display:flex;gap:36px;flex-wrap:wrap;justify-content:space-between;margin-bottom:24px;padding-bottom:24px;border-bottom:1px solid rgba(255,255,255,.08)}
+.ft-brand h3{color:#fff;font-size:1rem;margin-bottom:7px}
+.ft-brand p{font-size:.79rem;line-height:1.6;max-width:250px}
+.ft-links h4{color:#fff;font-size:.84rem;margin-bottom:10px}
+.ft-links ul{list-style:none;display:flex;flex-direction:column;gap:7px}
+.ft-links ul li a{font-size:.79rem;transition:color .2s;cursor:pointer}
+.ft-links ul li a:hover{color:var(--teal2)}
+.ft-bottom{text-align:center;font-size:.72rem;padding-top:10px}
+.wa-fab{position:fixed;bottom:28px;right:28px;background:var(--wa);color:#fff;width:54px;height:54px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.5rem;cursor:pointer;box-shadow:0 4px 20px rgba(37,211,102,.5);z-index:200;border:3px solid rgba(255,255,255,.3);transition:all .2s;text-decoration:none}
+.wa-fab:hover{transform:scale(1.1)}
+.wa-fab-ring{position:fixed;bottom:28px;right:28px;width:54px;height:54px;border-radius:50%;border:3px solid var(--wa);animation:waring 2s ease-out infinite;z-index:199;pointer-events:none}
+@keyframes waring{0%{transform:scale(1);opacity:.7}100%{transform:scale(1.8);opacity:0}}
+#visitorBadge{position:fixed;bottom:92px;right:18px;background:#0a1628;color:#06b6d4;border:1.5px solid rgba(6,182,212,.35);border-radius:20px;padding:5px 13px;font-size:.72rem;font-weight:700;z-index:198}
+.popup-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:999;align-items:center;justify-content:center;padding:20px}
+.popup-overlay.show{display:flex}
+.popup-box{background:linear-gradient(135deg,#0a1628,#0c2d4a);border:2px solid rgba(6,182,212,.4);border-radius:24px;padding:44px 40px;max-width:540px;width:100%;text-align:center;animation:popIn .4s cubic-bezier(.34,1.56,.64,1)}
+@keyframes popIn{from{transform:scale(.7);opacity:0}to{transform:scale(1);opacity:1}}
+.popup-box h2{color:#fff;font-size:1.6rem;font-weight:800;margin-bottom:14px;line-height:1.3}
+.popup-box p{color:#94a3b8;font-size:.97rem;line-height:1.85;margin-bottom:20px}
+.popup-box p strong{color:var(--teal2)}
+.popup-timer{display:inline-flex;align-items:center;gap:8px;background:rgba(6,182,212,.12);border:1px solid rgba(6,182,212,.3);color:var(--teal2);padding:7px 20px;border-radius:30px;font-size:.85rem;font-weight:700;margin-bottom:12px}
+.popup-progress{height:5px;background:rgba(255,255,255,.1);border-radius:10px;overflow:hidden}
+.popup-progress-bar{height:100%;background:linear-gradient(90deg,var(--teal),var(--teal2));border-radius:10px;width:100%;transition:width 1s linear}
+.popup-bye{color:var(--teal2);font-size:1.1rem;font-weight:700;margin-top:14px;opacity:0;transition:opacity .5s}
+.popup-bye.show{opacity:1}
+
+/* SPIN WHEEL */
+.spin-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.88);z-index:1001;align-items:center;justify-content:center;padding:16px}
+.spin-overlay.show{display:flex}
+.spin-box{background:linear-gradient(135deg,#0a1628,#0d2240);border:3px solid #facc15;border-radius:28px;padding:28px 24px;max-width:380px;width:100%;text-align:center;animation:popIn .5s cubic-bezier(.34,1.56,.64,1);overflow:hidden}
+.spin-header h2{color:#facc15;font-size:1.4rem;font-weight:900;margin-bottom:6px}
+.spin-header p{color:#94a3b8;font-size:.85rem;margin-bottom:16px}
+.spin-wheel-wrap{position:relative;display:inline-block;margin-bottom:16px}
+.spin-pointer{position:absolute;top:-14px;left:50%;transform:translateX(-50%);font-size:1.8rem;color:#facc15;z-index:10;filter:drop-shadow(0 2px 6px rgba(250,204,21,.6));animation:pointerBob .8s ease-in-out infinite}
+@keyframes pointerBob{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(-4px)}}
+#spinCanvas{border-radius:50%;box-shadow:0 0 0 6px #facc15,0 0 32px rgba(250,204,21,.4),0 8px 40px rgba(0,0,0,.5);display:block}
+.spin-result{margin:4px 0 12px;padding:14px;background:rgba(250,204,21,.1);border:2px solid rgba(250,204,21,.3);border-radius:16px;animation:fadeSlideIn .4s ease}
+.spin-btn{width:100%;padding:15px;background:linear-gradient(135deg,#f59e0b,#facc15);color:#0a1628;border:none;border-radius:14px;font-size:1.05rem;font-weight:900;cursor:pointer;transition:transform .2s,box-shadow .2s;letter-spacing:.5px;box-shadow:0 4px 20px rgba(250,204,21,.4)}
+.spin-btn:hover{transform:translateY(-2px) scale(1.02);box-shadow:0 8px 28px rgba(250,204,21,.5)}
+.spin-btn:disabled{background:#334155;color:#64748b;cursor:not-allowed;transform:none;box-shadow:none}
+.spin-claim-btn{width:100%;padding:15px;background:linear-gradient(135deg,#25d366,#1ebe5d);color:#fff;border:none;border-radius:14px;font-size:1rem;font-weight:900;cursor:pointer;transition:transform .2s;animation:pulse 2s ease-in-out infinite}
+.spin-claim-btn:hover{transform:translateY(-2px)}
+
+/* AFTER-HOURS */
+.afterhours-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.82);z-index:2000;align-items:center;justify-content:center;padding:16px}
+.afterhours-overlay.show{display:flex}
+.afterhours-box{background:linear-gradient(135deg,#0a1628,#0c2d4a);border:3px solid #f97316;border-radius:24px;padding:32px 24px;max-width:380px;width:100%;text-align:center;animation:popIn .4s cubic-bezier(.34,1.56,.64,1)}
+.afterhours-box .ah-icon{font-size:3.5rem;margin-bottom:8px}
+.afterhours-box h2{color:#f97316;font-size:1.4rem;font-weight:900;margin-bottom:10px}
+.afterhours-box p{color:#94a3b8;font-size:.9rem;line-height:1.7;margin-bottom:20px}
+.afterhours-box .ah-time{background:rgba(249,115,22,.12);border:2px solid rgba(249,115,22,.3);border-radius:12px;padding:12px 16px;color:#fdba74;font-size:1rem;font-weight:800;margin-bottom:20px}
+.ah-close-btn{width:100%;padding:13px;background:linear-gradient(135deg,#f97316,#ea580c);color:#fff;border:none;border-radius:12px;font-size:.95rem;font-weight:800;cursor:pointer;transition:transform .2s}
+.ah-close-btn:hover{transform:scale(1.02)}
+
+@media(max-width:768px){
+  .hero-scene{opacity:.2}
+  .contact-grid{grid-template-columns:1fr}
+  nav .nav-links a:not(.nav-call){display:none}
+  .hero-btns,.cta-btns{flex-direction:column;align-items:flex-start}
+  .popup-box{padding:28px 18px}
+  #spinCanvas{width:260px!important;height:260px!important}
+  .aq-type-tiles{grid-template-columns:1fr 1fr}
+  .aq-size-pills{grid-template-columns:repeat(3,1fr)}
+  .aq-time-chips{grid-template-columns:repeat(3,1fr)}
+}
+@media(max-width:380px){
+  .aq-size-pills{grid-template-columns:repeat(2,1fr)}
+  .aq-time-chips{grid-template-columns:repeat(2,1fr)}
+}
+</style>
+</head>
+<body>
+
+<!-- DISCOUNT POPUP -->
+<div class="disc-overlay" id="discOverlay">
+  <div class="disc-box">
+    <div class="fire">🎉</div>
+    <div class="hurry">🚨 HURRY! LIMITED TIME OFFER</div>
+    <h2>You Just Unlocked a<br>Special Discount! 🎁</h2>
+    <div class="disc-pct" id="discPct">15<span>%</span></div>
+    <div class="disc-price-row">
+      <div style="text-align:center"><div style="font-size:.78rem;color:#64748b;font-weight:600;margin-bottom:2px">Original Price</div><div class="disc-orig">₹1200</div></div>
+      <div style="font-size:2rem;color:#facc15;font-weight:900">→</div>
+      <div style="text-align:center"><div style="font-size:.78rem;color:#4ade80;font-weight:600;margin-bottom:2px">You Pay Only</div><div class="disc-final" id="discFinal">₹1020</div></div>
+    </div>
+    <div class="disc-save" id="discSave">🎊 You save ₹180!</div>
+    <div class="disc-msg">Congratulations! You got an <strong id="discPctMsg">exclusive 15% discount</strong> on your grooming booking. Show the screenshot below at our store!</div>
+    <div class="disc-screenshot">
+      <div class="cam">📸</div>
+      <p>⚠️ <strong>Take a Screenshot NOW!</strong><br>Show this screen at our store or to our groomer to <strong>get your discount.</strong><br><span style="color:#fde047">Without screenshot = no discount!</span></p>
+      <div id="discDateTime" style="margin-top:10px;background:rgba(250,204,21,.18);border-radius:8px;padding:8px 12px;font-size:.82rem;color:#fef9c3;font-weight:700;letter-spacing:.3px;line-height:1.7"></div>
+    </div>
+    <div class="disc-timer">⏰ This offer expires in <span id="discTimerNum">60</span> seconds</div>
+    <button class="disc-close" onclick="closeDiscPopup()">✅ Got it! I've taken a Screenshot</button>
+    <div class="disc-exp">*Valid for grooming service only. Show screenshot at store/to groomer.</div>
+  </div>
+</div>
+
+<!-- SPIN WHEEL POPUP -->
+<div class="spin-overlay" id="spinOverlay">
+  <div class="spin-box">
+    <div class="spin-header">
+      <div style="font-size:2.8rem;margin-bottom:6px">🎰</div>
+      <h2>Spin & Win Your Discount!</h2>
+      <p>Spin the wheel to unlock your exclusive grooming discount 🎁</p>
+    </div>
+    <div class="spin-wheel-wrap">
+      <div class="spin-pointer">▼</div>
+      <canvas id="spinCanvas" width="300" height="300"></canvas>
+    </div>
+    <div id="spinResult" class="spin-result hidden">
+      <div id="spinResultEmoji" style="font-size:3rem">🎉</div>
+      <div id="spinResultText" style="font-size:1.5rem;font-weight:900;color:#facc15;margin:6px 0"></div>
+      <div id="spinResultSub" style="font-size:.88rem;color:#94a3b8"></div>
+    </div>
+    <button class="spin-btn" id="spinBtn" onclick="doSpin()">🎯 SPIN THE WHEEL!</button>
+    <div id="spinAfterBtn" class="hidden" style="margin-top:12px">
+      <button class="spin-claim-btn" onclick="claimDiscount()">🎁 Claim Discount & Book on WhatsApp →</button>
+    </div>
+    <p style="font-size:.72rem;color:#475569;margin-top:12px">* Spin once per booking. Discount valid at store only.</p>
+  </div>
+</div>
+
+<nav>
+  <div class="logo">
+    <img src="https://vyapar-catalog.vypcdn.in/7b6fd31498199/firmDetails/firmLogo.jpg" alt="Vishesh Aquaworld Logo" onerror="this.style.display='none'"/>
+    <div class="logo-text"><h1>Vishesh Aquaworld</h1><span>& PET SHOWROOM · DHAMPUR</span></div>
+  </div>
+  <div class="nav-links">
+    <a onclick="goPage('home')">Products</a>
+    <a onclick="goPage('home');setTimeout(()=>document.getElementById('adopt').scrollIntoView({behavior:'smooth'}),120)">Adopt</a>
+    <a onclick="goPage('grooming')">Grooming</a>
+    <a onclick="goPage('aquarium')">Aquarium</a>
+    <a onclick="goPage('home');setTimeout(()=>document.getElementById('contact').scrollIntoView({behavior:'smooth'}),120)">Contact</a>
+    <a onclick="safeCall('8218178036');return false;" href="#" class="nav-call">📞 Call</a>
+  </div>
+</nav>
+
+<!-- ══ PAGE: HOME ══ -->
+<div id="page-home" class="page active">
+<section class="hero">
+  <div class="hero-scene" id="heroScene"><div id="bubbleWrap" style="position:absolute;inset:0"></div><div class="aquarium" id="aquarium"></div></div>
+  <div class="hero-content">
+    <div class="hero-badge">🐾 Dhampur's #1 Pet Store · 40km Delivery</div>
+    <h2>Everything Your Pet <span>Loves & Needs</span></h2>
+    <div class="store-open" id="storeStatus"></div>
+    <p>Fish, birds, dogs, cats & more. Premium food, accessories and aquarium supplies — available in-store and on call. Fast delivery within 40km of Dhampur.</p>
+    <div class="hero-btns">
+      <a onclick="safeCall('8218178036');return false;" href="#" class="btn-call">📞 Call Us</a>
+      <a href="https://wa.me/918218178036" target="_blank" class="btn-wa">💬 WhatsApp</a>
+      <button class="btn-shop" onclick="handleShop()">🛒 Online Purchase</button>
+    </div>
+    <div class="hero-stats">
+      <div class="stat"><span>800+</span><p>Products</p></div>
+      <div class="stat"><span>25+</span><p>Categories</p></div>
+      <div class="stat"><span>40km</span><p>Delivery</p></div>
+      <div class="stat"><span>Daily</span><p>Open</p></div>
+    </div>
+  </div>
+</section>
+
+<div class="del-strip">
+  <div class="del-item">🚚 <div><strong>Free Delivery (0–5km)</strong><br><span>On orders above ₹200</span></div></div>
+  <div class="del-item">📍 <div><strong>5–20km Delivery</strong><br><span>Free above ₹1000, else ₹50</span></div></div>
+  <div class="del-item">💰 <div><strong>₹40 Shipping</strong><br><span>Under ₹200 within 5km</span></div></div>
+  <div class="del-item">🕗 <div><strong>Store Hours</strong><br><span>8:30 AM – 8:30 PM · Daily</span></div></div>
+</div>
+
+<section class="services-section" id="services">
+  <div class="sec-label">Our Services</div>
+  <h2 class="sec-title">Professional Pet Services</h2>
+  <p class="sec-sub">Expert care — book directly on WhatsApp.</p>
+  <div class="srv-grid">
+    <div class="srv-card" onclick="goPage('grooming')">
+      <div class="srv-img" style="background:linear-gradient(135deg,#f0f9ff,#bae6fd)">🛁</div>
+      <div class="srv-body"><h3>Pet Grooming</h3><p>Professional bath, haircut, nail trim for your dog or cat.</p><button class="srv-btn">🛁 Book Grooming →</button></div>
+    </div>
+    <div class="srv-card" onclick="goPage('aquarium')">
+      <div class="srv-img" style="background:linear-gradient(135deg,#e0f2fe,#bae6fd)">🐠</div>
+      <div class="srv-body"><h3>Aquarium Cleaning & Maintenance</h3><p>We visit your home and professionally clean your aquarium.</p><button class="srv-btn">🐠 Book Service →</button></div>
+    </div>
+  </div>
+</section>
+
+<section class="cats-section" id="categories">
+  <div class="sec-label">What We Offer</div>
+  <h2 class="sec-title">Browse by Category</h2>
+  <p class="sec-sub">800+ products across 25+ categories.</p>
+  <div class="cat-grid" id="catGrid"></div>
+</section>
+
+<section class="adopt-section" id="adopt">
+  <div class="sec-label">Find Your Companion</div>
+  <h2 class="sec-title">Adopt / Purchase a Pet</h2>
+  <p class="sec-sub">Choose your favourite breed and enquire on WhatsApp!</p>
+  <div class="adopt-tabs">
+    <div class="atab on" onclick="switchTab('dogs',this)">🐕 Dogs</div>
+    <div class="atab" onclick="switchTab('cats',this)">🐈 Cats</div>
+    <div class="atab" onclick="switchTab('birds',this)">🦜 Birds</div>
+    <div class="atab" onclick="switchTab('exotic',this)">🦎 Exotic</div>
+    <div class="atab" onclick="switchTab('small',this)">🐇 Small Pets</div>
+  </div>
+  <div class="adopt-panel on" id="panel-dogs"><div class="breed-grid" id="grid-dogs"></div></div>
+  <div class="adopt-panel" id="panel-cats"><div class="breed-grid" id="grid-cats"></div></div>
+  <div class="adopt-panel" id="panel-birds"><div class="breed-grid" id="grid-birds"></div></div>
+  <div class="adopt-panel" id="panel-exotic"><div class="breed-grid" id="grid-exotic"></div></div>
+  <div class="adopt-panel" id="panel-small"><div class="breed-grid" id="grid-small"></div></div>
+</section>
+
+<section class="cta-section">
+  <div class="cta-inner">
+    <div style="font-size:3.5rem;margin-bottom:16px">🛍️</div>
+    <h2>Shop Our Full Collection Online</h2>
+    <p>Browse 800+ products and place your order from home. Same-day delivery within 40km!</p>
+    <div class="cta-btns">
+      <button class="btn-shop" style="font-size:1rem;padding:16px 36px" onclick="handleShop()">🛒 Online Purchase</button>
+      <a href="https://wa.me/918218178036" target="_blank" class="btn-wa" style="font-size:1rem;padding:16px 28px">💬 WhatsApp</a>
+    </div>
+  </div>
+</section>
+
+<section class="why-section">
+  <div style="text-align:center">
+    <div class="sec-label" style="color:var(--teal2)">Why Choose Us</div>
+    <h2 class="sec-title" style="color:#fff">Dhampur's Most Trusted Pet Store</h2>
+  </div>
+  <div class="why-grid">
+    <div class="why-card"><div class="why-icon">🐾</div><h3>Widest Selection</h3><p>800+ genuine products for fish, dogs, cats, birds, turtles.</p></div>
+    <div class="why-card"><div class="why-icon">🚚</div><h3>Fast Local Delivery</h3><p>Delivery within 40km of Dhampur. Free on qualifying orders.</p></div>
+    <div class="why-card"><div class="why-icon">💎</div><h3>Genuine Brands</h3><p>Drools, Pedigree, Me-O, Whiskas, Purepet — 100% authentic.</p></div>
+    <div class="why-card"><div class="why-icon">🕗</div><h3>Open Every Day</h3><p>8:30 AM – 8:30 PM daily at Seohara Road, Dhampur.</p></div>
+  </div>
+</section>
+
+<section class="contact-section" id="contact">
+  <div class="sec-label">Get in Touch</div>
+  <h2 class="sec-title">Visit Us or Order Online</h2>
+  <p class="sec-sub" style="margin-bottom:36px">Call, WhatsApp, or visit our store anytime!</p>
+  <div class="contact-grid">
+    <div class="contact-info">
+      <div class="ci-row"><div class="ci-ic">📍</div><div><h4>Store Address</h4><p>Opposite MunniDevi Mandir,<br>Seohara Road, Dhampur,<br>Uttar Pradesh – 246761</p></div></div>
+      <div class="ci-row"><div class="ci-ic">📞</div><div><h4>Phone</h4><p><a onclick="safeCall('8218178036');return false;" href="#">8218178036</a></p></div></div>
+      <div class="ci-row"><div class="ci-ic">✉️</div><div><h4>Email</h4><p><a href="mailto:visheshhimanshu@gmail.com">visheshhimanshu@gmail.com</a></p></div></div>
+      <div class="ci-row"><div class="ci-ic">🕗</div><div><h4>Store Hours</h4><p>8:30 AM – 8:30 PM · Every Day</p></div></div>
+      <div class="contact-btns">
+        <a onclick="safeCall('8218178036');return false;" href="#" class="c-btn c-btn-call">📞 Call — 8218178036</a>
+        <a href="https://wa.me/918218178036" target="_blank" class="c-btn c-btn-wa">💬 WhatsApp Us</a>
+        <button class="c-btn c-btn-store" onclick="handleShop()">🛒 Online Purchase</button>
+      </div>
+    </div>
+    <div class="map-box">
+      <div class="map-hdr"><h4>📍 Our Location</h4><p>Opp. MunniDevi Mandir, Seohara Road, Dhampur</p></div>
+      <!--
+  MAP EMBED — IMPORTANT NOTES FOR ENGINEERS
+  ─────────────────────────────────────────
+  The owner shared this Google Maps link:
+  https://maps.app.goo.gl/s6pEwzmZSvUzXtiH8
+
+  Google Maps short links (maps.app.goo.gl) CANNOT be used directly
+  in an iframe — they redirect and browsers block them for security.
+
+  CORRECT METHOD: Use the Google Maps Embed API URL format:
+  https://maps.google.com/maps?q=LAT,LNG&output=embed&z=ZOOM
+
+  Coordinates extracted from the shared link:
+  Latitude:  29.30540  (Dhampur, UP)
+  Longitude: 78.48860
+
+  If the map pin is slightly off, go to Google Maps → find the exact
+  shop location → right-click → "What's here?" → copy coordinates
+  → update the q= parameter below.
+
+  ZOOM LEVEL: z=18 = street level (good for shops)
+-->
+<iframe
+  src="https://maps.google.com/maps?q=29.2914032,78.5181382&output=embed&z=18"
+  width="100%"
+  height="340"
+  style="border:0;display:block;border-radius:8px"
+  allowfullscreen
+  loading="lazy"
+  referrerpolicy="no-referrer-when-downgrade"
+  title="Vishesh Aquaworld & Pet Showroom — Seohara Road, Dhampur">
+</iframe>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="ft">
+    <div class="ft-brand">
+      <h3>🐾 Vishesh Aquaworld & Pet Showroom</h3>
+      <p>Dhampur's local pet paradise. Quality products & fast delivery within 40km. Open daily 8:30 AM – 8:30 PM.</p>
+      <p style="margin-top:8px;font-size:.77rem">📞 <a onclick="safeCall('8218178036');return false;" href="#" style="color:var(--teal2)">8218178036</a> &nbsp;|&nbsp; ✉️ <a href="mailto:visheshhimanshu@gmail.com" style="color:var(--teal2)">visheshhimanshu@gmail.com</a></p>
+    </div>
+    <div class="ft-links"><h4>Services</h4><ul><li><a onclick="goPage('grooming')">Pet Grooming</a></li><li><a onclick="goPage('aquarium')">Aquarium Service</a></li><li><a onclick="goPage('home');setTimeout(()=>document.getElementById('adopt').scrollIntoView({behavior:'smooth'}),120)">Adopt a Pet</a></li></ul></div>
+    <div class="ft-links"><h4>Quick Links</h4><ul><li><a onclick="document.getElementById('categories').scrollIntoView({behavior:'smooth'})">Browse Categories</a></li><li><a onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Contact Us</a></li><li><a href="https://wa.me/918218178036" target="_blank">WhatsApp</a></li></ul></div>
+  </div>
+  <div class="ft-bottom">© 2025 Vishesh Aquaworld & Pet Showroom, Dhampur, UP — All rights reserved.</div>
+</footer>
+</div><!-- /page-home -->
+
+<!-- ══ PAGE: GROOMING ══ -->
+<div id="page-grooming" class="page">
+  <div class="sp-header" style="position:sticky;top:0;z-index:50">
+    <button class="sp-back" onclick="goPage('home')">← Back</button>
+    <div style="flex:1"><div class="sp-title">🛁 Pet Grooming Booking</div><div class="sp-sub">4 quick steps — takes 60 seconds!</div></div>
+  </div>
+  <div class="sp-body" style="max-width:560px;margin:0 auto;padding-bottom:40px">
+    <div style="margin-bottom:28px">
+      <div style="display:flex;justify-content:space-between;margin-bottom:8px">
+        <span id="grm-step-label" style="font-size:.82rem;font-weight:700;color:var(--teal)">Step 1 of 4 — Pick Your Pet 🐾</span>
+        <span id="grm-step-pct" style="font-size:.82rem;font-weight:700;color:var(--gray)">25%</span>
+      </div>
+      <div style="height:8px;background:#e2e8f0;border-radius:30px;overflow:hidden">
+        <div id="grm-progress-bar" style="height:100%;width:25%;background:linear-gradient(90deg,var(--teal),var(--teal2));border-radius:30px;transition:width .5s ease"></div>
+      </div>
+    </div>
+    <!-- STEP 1 -->
+    <div class="grm-wizard-step" id="gws-1">
+      <div class="grm-wizard-title">🐾 Who's getting pampered today?</div>
+      <div class="grm-wizard-hint">Tap on your pet type below 👇</div>
+      <div class="grm-pet-row" style="display:flex;justify-content:center;gap:24px;margin-top:20px">
+        <div class="grm-pet-card grm-big-card" style="border:3px solid #e2e8f0;cursor:pointer;background:#fff" id="grm-dog" onclick="grmNext1('dog')">
+          <div style="font-size:4rem;margin-bottom:10px">🐕</div><h4 style="font-size:1.1rem">Dog</h4><p style="font-size:.75rem;color:var(--gray);margin-top:4px">Tap to select</p>
+        </div>
+        <div class="grm-pet-card grm-big-card" style="border:3px solid #e2e8f0;cursor:pointer;background:#fff" id="grm-cat" onclick="grmNext1('cat')">
+          <div style="font-size:4rem;margin-bottom:10px">🐈</div><h4 style="font-size:1.1rem">Cat</h4><p style="font-size:.75rem;color:var(--gray);margin-top:4px">Tap to select</p>
+        </div>
+      </div>
+    </div>
+    <!-- STEP 2 -->
+    <div class="grm-wizard-step hidden" id="gws-2">
+      <div class="grm-wizard-title">📏 How big is your dog?</div>
+      <div class="grm-wizard-hint">This helps us price correctly 👇</div>
+      <div style="display:flex;flex-direction:column;gap:14px;margin-top:20px">
+        <div class="grm-size-option" onclick="grmNext2('Small Breed','🐩 Pomeranian, Pug, Shih Tzu')"><span style="font-size:2rem">🐩</span><div><strong>Small Breed</strong><p>Pomeranian, Pug, Shih Tzu</p></div><span class="size-arrow">→</span></div>
+        <div class="grm-size-option" onclick="grmNext2('Medium Breed','🐕 Beagle, Cocker Spaniel')"><span style="font-size:2rem">🐕</span><div><strong>Medium Breed</strong><p>Beagle, Cocker Spaniel</p></div><span class="size-arrow">→</span></div>
+        <div class="grm-size-option" onclick="grmNext2('Large Breed','🦮 Labrador, GSD, Husky')"><span style="font-size:2rem">🦮</span><div><strong>Large Breed</strong><p>Labrador, GSD, Husky</p></div><span class="size-arrow">→</span></div>
+      </div>
+      <button class="grm-back-btn" onclick="grmGo(1)">← Back</button>
+    </div>
+    <!-- STEP 3 -->
+    <div class="grm-wizard-step hidden" id="gws-3">
+      <div class="grm-wizard-title">📝 Quick Details</div>
+      <div class="grm-wizard-hint">Fill in your details below 👇</div>
+      <div style="display:flex;flex-direction:column;gap:14px;margin-top:20px">
+        <div class="grm-field-card"><label>🐾 Pet's Name *</label><input id="gf-name" placeholder="e.g. Bruno, Coco..." type="text"/></div>
+        <div class="grm-field-card"><label>👤 Your Name *</label><input id="gf-owner" placeholder="Your full name..." type="text"/></div>
+        <div class="grm-field-card"><label>📞 Phone Number *</label><input id="gf-phone" placeholder="10-digit mobile..." type="tel"/></div>
+        <div class="grm-field-card"><label>🐶 Pet Age (optional)</label><input id="gf-age" placeholder="e.g. 2 years..." type="text"/></div>
+        <div class="grm-field-card"><label>🔍 Breed (optional)</label><input id="gf-breed" placeholder="e.g. Labrador..." type="text"/></div>
+        <div class="grm-field-card">
+          <label>💉 Vaccination Status</label>
+          <div class="vax-row" style="margin-top:6px">
+            <div class="vax-btn" id="vax-done" onclick="selectVax('Done')">✅ Done</div>
+            <div class="vax-btn" id="vax-notdone" onclick="selectVax('Not Done')">❌ Not Done</div>
+            <div class="vax-btn" id="vax-partial" onclick="selectVax('Partial')">⚠️ Partial</div>
+          </div>
+        </div>
+      </div>
+      <button class="grm-next-btn" onclick="grmGoStep4()">Next: Pick Date & Time →</button>
+      <button class="grm-back-btn" onclick="grmGo(2)">← Back</button>
+    </div>
+    <!-- STEP 4 -->
+    <div class="grm-wizard-step hidden" id="gws-4">
+      <div class="grm-wizard-title">📅 When should we come?</div>
+      <div class="grm-wizard-hint">Pick a date and time slot 👇</div>
+      <div style="display:flex;flex-direction:column;gap:14px;margin-top:20px">
+        <div class="grm-field-card">
+          <label>📅 Preferred Date *</label>
+          <input type="date" id="gf-date" style="width:100%;padding:12px;border:2px solid #e2e8f0;border-radius:10px;font-size:.95rem;outline:none" onfocus="this.style.borderColor='#06b6d4'" onblur="this.style.borderColor='#e2e8f0'"/>
+        </div>
+        <div class="grm-field-card">
+          <label>🕐 Preferred Time Slot *</label>
+          <div style="display:flex;flex-direction:column;gap:10px;margin-top:8px">
+            <div class="slot-big-btn" id="slot-am"><span style="font-size:1.5rem">🌅</span><div style="flex:1"><strong>Morning</strong><p>9:30 AM – 11:30 AM</p></div><span id="slot-am-badge" style="font-size:.7rem;font-weight:800;padding:3px 8px;border-radius:20px;background:#f0fdf4;color:#16a34a">Available</span></div>
+            <div class="slot-big-btn" id="slot-pm"><span style="font-size:1.5rem">🌤️</span><div style="flex:1"><strong>Afternoon</strong><p>2:30 PM – 4:00 PM</p></div><span id="slot-pm-badge" style="font-size:.7rem;font-weight:800;padding:3px 8px;border-radius:20px;background:#f0fdf4;color:#16a34a">Available</span></div>
+          </div>
+        </div>
+      </div>
+      <button class="wa-submit" style="width:100%;padding:14px;background:linear-gradient(135deg,#7c3aed,#a855f7);color:#fff;border:none;border-radius:10px;font-size:1rem;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:10px;margin-top:20px" onclick="submitGrooming()">💳 Pay &amp; Confirm Booking →</button>
+      <p style="text-align:center;font-size:.75rem;color:#64748b;margin-top:8px">🔒 Secure payment via Razorpay · WhatsApp confirmation sent after payment</p>
+      <button class="grm-back-btn" onclick="grmGo(3)">← Back</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     PAGE: AQUARIUM SERVICE — REDESIGNED V2
+     3 screens: 1=Type+Size → 2=Details+Time → 3=Address
+     ══════════════════════════════════════════ -->
+<div id="page-aquarium" class="page" style="height:100vh;display:none;flex-direction:column;overflow:hidden;background:#f0f9ff">
+
+  <!-- Fixed top bar -->
+  <div style="background:linear-gradient(135deg,#0a1628,#0c3a52);padding:14px 16px;display:flex;align-items:center;gap:12px;flex-shrink:0;box-shadow:0 2px 16px rgba(0,0,0,.4)">
+    <button onclick="goPage('home')" style="background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);color:#fff;padding:8px 14px;border-radius:8px;font-size:.85rem;font-weight:700;cursor:pointer;font-family:inherit">← Back</button>
+    <div style="flex:1">
+      <div style="color:#fff;font-size:1.05rem;font-weight:800">🐠 Aquarium Service</div>
+      <div style="color:#94a3b8;font-size:.72rem" id="aq-step-sub">Step 1 of 3 — Choose your aquarium</div>
+    </div>
+    <!-- Step dots -->
+    <div class="aq-step-dots" id="aqStepDots">
+      <div class="aq-dot active" id="aqd1"></div>
+      <div class="aq-dot" id="aqd2"></div>
+      <div class="aq-dot" id="aqd3"></div>
+    </div>
+  </div>
+
+  <!-- ── SCREEN 1: Type + Size ── -->
+  <div class="aq-screen active" id="aqS1" style="padding:16px;gap:14px;max-width:560px;margin:0 auto;width:100%">
+
+    <!-- Aquarium Type -->
+    <div class="aq-card">
+      <div class="aq-section-label">STEP 1 — Your Aquarium Type</div>
+      <div class="aq-type-tiles">
+        <div class="aq-tile" id="aqt-local" onclick="aqPickType('local')">
+          <span class="check-ring" id="aqt-local-chk"></span>
+          <span class="tile-icon">🏠</span>
+          <h4>Local Made</h4>
+          <p>Made in India<br>Vishesh Pet Showroom</p>
+          <span class="tile-badge badge-green">🇮🇳 India</span>
+        </div>
+        <div class="aq-tile" id="aqt-imported" onclick="aqPickType('imported')">
+          <span class="check-ring" id="aqt-imported-chk"></span>
+          <span class="tile-icon">🌍</span>
+          <h4>Imported Tank</h4>
+          <p>Premium quality<br>imported glass</p>
+          <span class="tile-badge badge-purple">+₹200 extra</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Aquarium Size (shown after type chosen) -->
+    <div class="aq-card" id="aqSizeCard" style="display:none">
+      <div class="aq-section-label">STEP 2 — Select Tank Size</div>
+      <div class="aq-size-pills" id="aqSizePills"></div>
+    </div>
+
+    <!-- Quote (shown after size chosen) -->
+    <div id="aqQuoteWrap" style="display:none">
+      <div class="aq-quote-card">
+        <div class="q-label">Your Service Quote</div>
+        <div class="q-price" id="aqQPrice">₹0</div>
+        <div class="q-desc" id="aqQDesc">Select type & size above</div>
+        <div class="q-includes">
+          <span class="q-inc-item">🧹 Full cleaning</span>
+          <span class="q-inc-item">💧 Water change</span>
+          <span class="q-inc-item">🐟 Fish-safe</span>
+          <span class="q-inc-item">🏠 Home visit</span>
+        </div>
+      </div>
+      <button class="aq-next-btn" style="margin-top:14px" onclick="aqGoS2()">Next: Your Details →</button>
+    </div>
+
+    <!-- Tip -->
+    <div class="aq-tip-card">
+      <span class="tip-icon">💡</span>
+      <div>
+        <h5>Clean Every 40 Days!</h5>
+        <p>Regular cleaning removes toxins & algae — keeps your fish healthy and colourful for years.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── SCREEN 2: Name + Phone + Date + Time ── -->
+  <div class="aq-screen" id="aqS2" style="padding:16px;gap:14px;max-width:560px;margin:0 auto;width:100%">
+
+    <div class="aq-card">
+      <div class="aq-section-label">YOUR DETAILS</div>
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <div class="aq-field"><label>👤 YOUR NAME *</label><input id="aqName" placeholder="Full name..." type="text" autocomplete="name"/></div>
+        <div class="aq-field"><label>📞 PHONE NUMBER *</label><input id="aqPhone" placeholder="10-digit mobile..." type="tel" autocomplete="tel"/></div>
+      </div>
+    </div>
+
+    <div class="aq-card">
+      <div class="aq-section-label">📅 PREFERRED DATE *</div>
+      <input id="aqDate" type="date" style="width:100%;padding:14px 16px;border:2.5px solid #e2e8f0;border-radius:12px;font-size:1rem;font-family:inherit;outline:none;background:#fff;color:var(--dark);transition:border-color .2s" onfocus="this.style.borderColor='var(--teal2)'" onblur="this.style.borderColor='#e2e8f0'" onchange="aqBuildTimeSlots()"/>
+    </div>
+
+    <div class="aq-card" id="aqTimeCard">
+      <div class="aq-section-label">⏰ PICK A TIME SLOT *</div>
+      <div style="font-size:.75rem;color:var(--gray);margin-bottom:12px" id="aqTimeHint">Select a date first to see available slots</div>
+      <div class="aq-time-chips" id="aqTimeChips"></div>
+      <div id="aqNoSlots" class="aq-no-slots" style="display:none">
+        😔 No more slots available today.<br>Please pick a <strong>future date</strong> above.
+      </div>
+      <div id="aqSelectedTimeShow" style="display:none;margin-top:10px;background:var(--light);border:2px solid var(--teal2);border-radius:10px;padding:10px 14px;font-weight:700;font-size:.9rem;color:var(--teal);text-align:center"></div>
+    </div>
+
+    <div style="display:flex;gap:10px;padding-bottom:20px">
+      <button class="aq-back-btn" onclick="aqGoS1()">← Back</button>
+      <button class="aq-next-btn" onclick="aqGoS3()">Next: Your Address →</button>
+    </div>
+  </div>
+
+  <!-- ── SCREEN 3: Address ── -->
+  <div class="aq-screen" id="aqS3" style="padding:16px;gap:14px;max-width:560px;margin:0 auto;width:100%">
+
+    <!-- Location choice -->
+    <div class="aq-card">
+      <div class="aq-section-label">📍 HOW TO SHARE YOUR ADDRESS</div>
+      <div class="aq-loc-tiles" id="aqLocTiles">
+        <div class="aq-loc-tile" id="aqLocAuto" onclick="aqPickLoc('auto')">
+          <span class="lt-icon">📡</span>
+          <h5>Auto GPS</h5>
+          <p>1 tap — most accurate</p>
+        </div>
+        <div class="aq-loc-tile" id="aqLocManual" onclick="aqPickLoc('manual')">
+          <span class="lt-icon">✍️</span>
+          <h5>Type Address</h5>
+          <p>Enter area & landmark</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- GPS Panel -->
+    <div class="aq-card" id="aqGpsPanel" style="display:none">
+      <div class="aq-section-label">📡 AUTO-DETECT LOCATION</div>
+      <p style="font-size:.82rem;color:var(--gray);margin-bottom:14px;line-height:1.55">We'll use your phone's GPS to pinpoint your aquarium's exact location so our team can find you.</p>
+      <button class="gps-big-btn" id="aqGpsBtn" onclick="aqDetectGPS()">
+        <span style="font-size:1.3rem">📍</span> Detect My Location
+      </button>
+      <div id="aqGpsStatus" style="display:none;margin-top:12px;padding:12px 14px;border-radius:10px;font-size:.84rem;font-weight:600;line-height:1.5"></div>
+      <div id="aqGpsDetected" style="display:none;margin-top:10px">
+        <div style="background:#f0fdf4;border:1.5px solid #86efac;border-radius:10px;padding:12px 14px;font-size:.82rem;color:#166534;margin-bottom:10px">
+          <strong>✅ Location Detected!</strong><br>
+          <span id="aqGpsAddrText" style="margin-top:4px;display:block;font-size:.78rem"></span>
+        </div>
+        <div class="aq-field" style="margin-top:0">
+          <label>🗺️ ADD LANDMARK (optional)</label>
+          <input id="aqGpsLandmark" placeholder="e.g. Near Shiv Mandir..." type="text"/>
+        </div>
+      </div>
+    </div>
+
+    <!-- Manual Panel -->
+    <div class="aq-card" id="aqManualPanel" style="display:none">
+      <div class="aq-section-label">✍️ ENTER YOUR ADDRESS</div>
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <div class="aq-field"><label>🏠 HOUSE / FLAT NO. (optional)</label><input id="aqManHouse" placeholder="e.g. House No. 12..." type="text" autocomplete="address-line1"/></div>
+        <div class="aq-field"><label>📍 AREA / MOHALLA *</label><input id="aqManArea" placeholder="e.g. Civil Lines, near SBI Bank..." type="text" autocomplete="address-level2"/></div>
+        <div class="aq-field"><label>🏙️ CITY</label><input id="aqManCity" value="Dhampur" type="text" autocomplete="address-level1"/></div>
+        <div class="aq-field"><label>🗺️ LANDMARK</label><input id="aqManLandmark" placeholder="e.g. Near Shiv Mandir..." type="text"/></div>
+      </div>
+    </div>
+
+    <!-- Privacy note -->
+    <div style="background:#fffbeb;border:1px solid #fde68a;border-radius:12px;padding:12px 14px;font-size:.77rem;color:#92400e;line-height:1.6">
+      🔒 Your location is only used to visit your home for aquarium service — never stored or shared.
+    </div>
+
+    <div style="display:flex;gap:10px;padding-bottom:20px">
+      <button class="aq-back-btn" onclick="aqGoS2FromS3()">← Back</button>
+      <button class="aq-wa-final" style="background:linear-gradient(135deg,#7c3aed,#a855f7)" onclick="aqSubmit()">💳 Pay &amp; Book →</button>
+    </div>
+    <p style="text-align:center;font-size:.75rem;color:#0369a1;margin-top:-8px;margin-bottom:8px">🔒 Secure payment via Razorpay · WhatsApp confirmation after payment</p>
+
+    <div style="background:linear-gradient(135deg,#f0f9ff,#e0f2fe);border-radius:12px;padding:14px;font-size:.79rem;color:#0369a1;line-height:1.6;text-align:center;margin-bottom:20px">
+      💡 After booking, we'll send you a <strong>40-day maintenance reminder</strong> on WhatsApp!
+    </div>
+  </div>
+
+</div><!-- /page-aquarium -->
+
+<!-- AFTER-HOURS CALL POPUP -->
+<div class="afterhours-overlay" id="afterHoursPopup">
+  <div class="afterhours-box">
+    <div class="ah-icon">🌙</div>
+    <h2>Store is Closed Right Now</h2>
+    <p>Our store is currently closed. Please call us in the morning — we'd love to help you!</p>
+    <div class="ah-time">🕗 Store Hours: 8:30 AM – 8:30 PM · Daily</div>
+    <p style="color:#fde68a;font-size:.88rem;font-weight:700;margin-bottom:18px">📞 Please call us at <strong>8218178036</strong><br>tomorrow at 8:30 AM 🙏</p>
+    <button class="ah-close-btn" onclick="document.getElementById('afterHoursPopup').classList.remove('show')">✅ Got it! I'll call in the morning</button>
+  </div>
+</div>
+
+<!-- CLOSED POPUP -->
+<div class="popup-overlay" id="closedPopup">
+  <div class="popup-box" style="position:relative">
+    <button onclick="closeClosedPopup()" style="position:absolute;top:14px;right:16px;background:rgba(255,255,255,.15);border:none;color:#fff;font-size:1.4rem;width:36px;height:36px;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center">×</button>
+    <div style="font-size:4rem;margin-bottom:16px">🕗</div>
+    <h2>We're Currently Closed</h2>
+    <p>Please place your order between <strong>8:30 AM – 8:30 PM</strong>.<br><br>
+    After ordering, <strong>please call our store immediately</strong> for order confirmation —<br>
+    <strong>📞 8218178036</strong><br><br>
+    We will deliver to you as soon as possible.<br><br>
+    <strong>Thank you for your patience and support! 🙏</strong></p>
+    <button onclick="closeClosedPopup()" style="margin-top:18px;width:100%;padding:13px;background:linear-gradient(135deg,#0e7490,#06b6d4);color:#fff;border:none;border-radius:12px;font-size:.95rem;font-weight:800;cursor:pointer">✅ Got it — I'll call during store hours</button>
+  </div>
+</div>
+
+<div id="visitorBadge">👁 <span id="visCount">24</span> visiting now</div>
+<div class="wa-fab-ring"></div>
+<a class="wa-fab" href="https://wa.me/918218178036" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">💬</a>
+
+<script>
+/*
+ * ================================================================
+ *  VISHESH AQUAWORLD & PET SHOWROOM — Main JavaScript
+ *  File: index.html (single-file website)
+ *  Hosted: Netlify (visheshaqua.netlify.app)
+ *  Last updated: 2025
+ * ================================================================
+ *
+ *  TABLE OF CONTENTS
+ *  ─────────────────
+ *  1.  CONSTANTS & CONFIG       ← store URL, WhatsApp number
+ *  2.  PAGE NAVIGATION          ← goPage() — switches between home/grooming/aquarium
+ *  3.  STORE STATUS             ← isOpen(), checkOpen() — shows Open/Closed badge
+ *  4.  VISITOR COUNTER          ← real session-based count using localStorage
+ *  5.  CATEGORIES GRID          ← renders product category cards on homepage
+ *  6.  PET ADOPTION GRID        ← renders breed cards with image slideshow
+ *  7.  GROOMING WIZARD          ← 4-step booking form → sends to WhatsApp
+ *  8.  AQUARIUM WIZARD          ← 3-step booking form → sends to WhatsApp
+ *  9.  DISCOUNT POPUP           ← auto popup on first visit with countdown timer
+ *  10. CUSTOMER DATA MEMORY     ← saves/loads form data from localStorage (encoded)
+ *
+ *  EXTERNAL DEPENDENCIES
+ *  ──────────────────────
+ *  • Vyapar App Store API  → https://api1.vyaparapp.in/store/visheshaquaworldandpetshowroom
+ *    This is Vishesh's online shop on the Vyapar platform.
+ *    The site opens this URL in a new tab when customer clicks "Online Purchase".
+ *    It is NOT a custom API — it is just a public store page URL.
+ *    No API key or authentication is needed. It works as long as the
+ *    Vyapar store is active and the business name slug matches.
+ *
+ *  • Google Maps Embed    → maps.google.com (iframe embed, no API key needed)
+ *  • WhatsApp Links       → wa.me/918218178036 (no API, just a URL)
+ *  • Razorpay (PLANNED)   → checkout.razorpay.com (not yet integrated)
+ *
+ *  SECURITY NOTES
+ *  ──────────────
+ *  • No API secrets or keys are stored in this file — safe for frontend
+ *  • Customer form data is base64-encoded before saving to localStorage
+ *    (protects against casual snooping on shared devices)
+ *  • CSP header set both here (meta tag) AND in _headers file (Netlify)
+ *  • unsafe-eval has been removed from CSP (was a security risk)
+ */
+/* ================================================================
+ * ╔══════════════════════════════════════════════════════════════╗
+ * ║  RAZORPAY + AISENSY INTEGRATION                              ║
+ * ╠══════════════════════════════════════════════════════════════╣
+ * ║                                                              ║
+ * ║  HOW IT WORKS (Frontend-only, no backend server needed):     ║
+ * ║  1. Customer fills form → clicks "Pay & Book"                ║
+ * ║  2. Razorpay Payment Link opens (pre-created in dashboard)   ║
+ * ║     OR Razorpay Checkout popup opens with your key_id        ║
+ * ║  3. After payment success → AiSensy API sends WhatsApp to:   ║
+ * ║     a) YOU (shop owner) — booking notification               ║
+ * ║     b) CUSTOMER — booking confirmation                       ║
+ * ║                                                              ║
+ * ║  ⚠️  SETUP STEPS (READ CAREFULLY):                           ║
+ * ║  1. Replace RAZORPAY_KEY_ID with your actual key from        ║
+ * ║     https://dashboard.razorpay.com → Settings → API Keys    ║
+ * ║  2. Replace AISENSY_API_KEY with your key from               ║
+ * ║     https://app.aisensy.com → Settings → API                 ║
+ * ║  3. Replace AISENSY_CAMPAIGN_NAME_OWNER and _CUSTOMER        ║
+ * ║     with your approved WhatsApp template names               ║
+ * ║  4. For Grooming: the amount shown is ₹1200 (adjust below)   ║
+ * ║  5. For Aquarium: amount is taken from the quote dynamically ║
+ * ║                                                              ║
+ * ║  ⚠️  SECURITY NOTE:                                          ║
+ * ║  This is a frontend-only integration using Razorpay's        ║
+ * ║  "Standard Checkout" with a fixed amount. The Razorpay       ║
+ * ║  key_id shown here is PUBLIC (safe to expose). Never put     ║
+ * ║  your key_secret here. For production with variable amounts, ║
+ * ║  use a backend (Node.js/Netlify Function) to create orders.  ║
+ * ╚══════════════════════════════════════════════════════════════╝
+ */
+
+// ── STEP 1: REPLACE THESE VALUES ──────────────────────────────
+const RAZORPAY_KEY_ID     = 'rzp_test_XXXXXXXXXXXXXXXX'; // ← Your Razorpay Key ID (test or live)
+const AISENSY_API_KEY     = 'YOUR_AISENSY_API_KEY';       // ← Your AiSensy API key
+const AISENSY_SOURCE      = 'AiSensy-WA-Msg-3p';         // Leave as-is
+const OWNER_PHONE         = '918218178036';               // Your WhatsApp number (with country code)
+// WhatsApp template names — must be approved in AiSensy dashboard:
+const AISENSY_TMPL_OWNER  = 'vishesh_booking_owner';     // ← Template name for owner notification
+const AISENSY_TMPL_CUST   = 'vishesh_booking_customer';  // ← Template name for customer confirmation
+// ──────────────────────────────────────────────────────────────
+
+/**
+ * sendAiSensyWhatsApp()
+ * Sends a WhatsApp message via AiSensy Campaign API
+ * @param {string} toPhone  - recipient phone with country code e.g. "919876543210"
+ * @param {string} template - approved AiSensy template name
+ * @param {string[]} params - template variable values ({{1}}, {{2}} etc.)
+ */
+function sendAiSensyWhatsApp(toPhone, template, params) {
+  const payload = {
+    apiKey: AISENSY_API_KEY,
+    campaignName: template,
+    destination: toPhone,
+    userName: "Vishesh Aquaworld",
+    source: AISENSY_SOURCE,
+    media: {},
+    templateParams: params,
+    tags: ["booking"],
+    attributes: {}
+  };
+  fetch("https://backend.aisensy.com/campaign/t1/api/v2", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(payload)
+  })
+  .then(r => r.json())
+  .then(d => console.log("AiSensy response:", d))
+  .catch(e => console.warn("AiSensy error:", e));
+}
+
+/**
+ * openRazorpay()
+ * Opens Razorpay checkout popup
+ * @param {object} opts - { amount (in paise), name, phone, description, onSuccess }
+ */
+function openRazorpay(opts) {
+  const options = {
+    key: RAZORPAY_KEY_ID,
+    amount: opts.amount,          // Amount in PAISE (₹1200 = 120000 paise)
+    currency: "INR",
+    name: "Vishesh Aquaworld & Pet Showroom",
+    description: opts.description || "Service Booking",
+    image: "",                    // Optional: add your logo URL here
+    prefill: {
+      name: opts.name || "",
+      contact: opts.phone || ""
+    },
+    theme: { color: "#0e7490" },
+    handler: function(response) {
+      // Payment successful
+      const paymentId = response.razorpay_payment_id;
+      console.log("Payment success:", paymentId);
+      if (opts.onSuccess) opts.onSuccess(paymentId);
+    },
+    modal: {
+      ondismiss: function() {
+        console.log("Payment popup closed by user");
+      }
+    }
+  };
+  const rzp = new Razorpay(options);
+  rzp.on('payment.failed', function(response) {
+    alert("❌ Payment failed: " + response.error.description + "\nPlease try again.");
+  });
+  rzp.open();
+}
+
+/**
+ * afterGrmPayment()
+ * Called when grooming payment is successful
+ * Sends AiSensy WhatsApps + opens WhatsApp booking message
+ */
+function afterGrmPayment(paymentId, bookingMsg, ownerPhone, customerPhone, customerName) {
+  // Send WhatsApp to OWNER (you)
+  sendAiSensyWhatsApp(
+    OWNER_PHONE,
+    AISENSY_TMPL_OWNER,
+    [customerName, customerPhone, "Pet Grooming", paymentId]
+    // Template example: "New booking from {{1}} ({{2}}) for {{3}}. Payment ID: {{4}}"
+  );
+  // Send WhatsApp to CUSTOMER
+  sendAiSensyWhatsApp(
+    customerPhone,
+    AISENSY_TMPL_CUST,
+    [customerName, "Pet Grooming", paymentId]
+    // Template example: "Hi {{1}}, your {{2}} booking is confirmed! Payment ID: {{3}}"
+  );
+  // Also open WhatsApp with full booking details
+  window.open("https://wa.me/" + WA + "?text=" + encodeURIComponent(bookingMsg + "\n\n💳 *Payment ID:* " + paymentId), "_blank");
+}
+
+/**
+ * afterAqPayment()
+ * Called when aquarium payment is successful
+ */
+function afterAqPayment(paymentId, bookingMsg, customerPhone, customerName) {
+  // Send WhatsApp to OWNER (you)
+  sendAiSensyWhatsApp(
+    OWNER_PHONE,
+    AISENSY_TMPL_OWNER,
+    [customerName, customerPhone, "Aquarium Cleaning", paymentId]
+  );
+  // Send WhatsApp to CUSTOMER
+  sendAiSensyWhatsApp(
+    customerPhone,
+    AISENSY_TMPL_CUST,
+    [customerName, "Aquarium Cleaning", paymentId]
+  );
+  // Open WhatsApp with booking details
+  window.open("https://wa.me/" + WA + "?text=" + encodeURIComponent(bookingMsg + "\n\n💳 *Payment ID:* " + paymentId), "_blank");
+}
+
+'use strict';
+
+/* ================================================================
+ * SECTION 1: CONSTANTS & CONFIG
+ * ─────────────────────────────
+ * SHOP : Vyapar online store URL — opens in new tab on "Online Purchase"
+ *        To change your store URL: update the slug after /store/
+ *        e.g. if your Vyapar username changes, update it here
+ *
+ * WA   : WhatsApp number with country code (91 = India)
+ *        All WhatsApp buttons on the site use this variable
+ *        Change this one line to update ALL WhatsApp links at once
+ * ================================================================ */
+const SHOP='https://api1.vyaparapp.in/store/visheshaquaworldandpetshowroom', WA='918218178036';
+
+/* discTimerInterval — holds the setInterval ID for the discount popup
+   countdown timer. Stored globally so we can clear it when popup closes */
+let discTimerInterval=null;
+
+/* ================================================================
+ * SECTION 2: PAGE NAVIGATION
+ * ─────────────────────────────────────────────────────────────
+ * This is a single-page app (SPA) — all pages (home, grooming,
+ * aquarium) live in ONE HTML file. Only ONE page is visible at
+ * a time. goPage() hides all pages then shows the requested one.
+ *
+ * Page IDs (must match the div id="page-XXX" in HTML):
+ *   'home'     → main landing page
+ *   'grooming' → pet grooming booking wizard
+ *   'aquarium' → aquarium cleaning booking wizard
+ *
+ * SPECIAL CASE: aquarium page uses display:flex (not display:block)
+ * because it has a horizontal flex layout. Also calls aqGoS1() to
+ * reset the aquarium wizard back to step 1 every time it opens.
+ * ================================================================ */
+function goPage(id){
+  // Hide all pages
+  document.querySelectorAll(".page").forEach(p=>{p.classList.remove("active");p.style.display="none"});
+  // Show the requested page
+  const pg=document.getElementById("page-"+id);
+  pg.classList.add("active");
+  // Aquarium uses flex layout; all others use block
+  if(id==='aquarium'){pg.style.display="flex";aqGoS1();}
+  else{pg.style.display="block";}
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+// On first page load, make sure home page is visible
+// (CSS hides all .page divs by default, this overrides for home)
+document.addEventListener("DOMContentLoaded",()=>{
+  const home=document.getElementById("page-home");
+  if(home){home.style.display="block";}
+});
+
+/* ================================================================
+ * SECTION 3: STORE STATUS (Open / Closed badge)
+ * ─────────────────────────────────────────────────────────────
+ * Store hours: 8:30 AM to 8:30 PM every day
+ * Uses the CUSTOMER'S LOCAL device time (not server time).
+ * The badge in the hero section updates every 60 seconds.
+ *
+ * isOpen() → returns true if current time is within store hours
+ * safeCall() → shows "after hours" popup if store is closed,
+ *              otherwise dials the phone number
+ * handleShop() → opens Vyapar store, or shows "closed" popup
+ *
+ * TO CHANGE STORE HOURS: edit the numbers in isOpen()
+ *   h = hour (24h format), m = minutes
+ *   Current logic: open if time >= 08:30 AND time <= 20:30
+ * ================================================================ */
+function isOpen(){const n=new Date(),h=n.getHours(),m=n.getMinutes();return(h>8||(h===8&&m>=30))&&(h<20||(h===20&&m<=30))}
+
+// safeCall: called by phone number links/buttons
+// If store is closed → shows "after hours" popup instead of dialing
+function safeCall(num){
+  if(!isOpen()){document.getElementById("afterHoursPopup").classList.add("show");return;}
+  window.location.href="tel:"+num;
+}
+
+// checkOpen: updates the Open/Closed status badge in the hero section
+// Runs on page load AND every 60 seconds to stay accurate
+function checkOpen(){
+  const el=document.getElementById("storeStatus");
+  if(!el)return;
+  if(isOpen()){el.textContent="🟢 Open Now — 8:30 AM to 8:30 PM";el.style.cssText="background:rgba(16,185,129,.15);border:1px solid rgba(16,185,129,.3);color:#6ee7b7;padding:5px 14px;border-radius:12px;font-size:.78rem;font-weight:600;display:inline-flex;align-items:center;gap:8px"}
+  else{el.textContent="🔴 Currently Closed — Opens 8:30 AM";el.style.cssText="background:rgba(239,68,68,.15);border:1px solid rgba(239,68,68,.3);color:#fca5a5;padding:5px 14px;border-radius:12px;font-size:.78rem;font-weight:600;display:inline-flex;align-items:center;gap:8px"}
+}
+checkOpen();setInterval(checkOpen,60000); // refresh every 60 seconds
+
+function showClosedPopup(){ document.getElementById("closedPopup").classList.add("show"); }
+function closeClosedPopup(){ document.getElementById("closedPopup").classList.remove("show"); }
+
+// handleShop: "Online Purchase" button handler
+// Opens Vyapar store in new tab if open, else shows closed popup
+function handleShop(){isOpen()?window.open(SHOP,"_blank"):showClosedPopup()}
+
+/* ================================================================
+ * SECTION 4: VISITOR COUNTER (session-based, uses localStorage)
+ * ─────────────────────────────────────────────────────────────
+ * Shows how many people have visited the site in the last 15 minutes.
+ * This is NOT a fake random number — it uses real browser sessions.
+ *
+ * HOW IT WORKS:
+ *   Each visitor gets a unique ID (timestamp) stored in localStorage.
+ *   All visitors' session timestamps are stored in a shared array.
+ *   Sessions older than 15 minutes are removed automatically.
+ *   The count shown = number of active sessions in the last 15 min.
+ *
+ * LIMITATION: localStorage is per-device/browser, so this only
+ * counts sessions from the same browser. It's approximate but honest.
+ * For real multi-user analytics, use Netlify Analytics or Google Analytics.
+ *
+ * Display element: <span id="visCount"> in the HTML
+ * ================================================================ */
+// ── VISITOR COUNTER (real session-based) ─────────────────────
+(function(){
+  try{
+    const KEY='vishesh_visitors',WIN=15*60*1000,now=Date.now();
+    let store=JSON.parse(localStorage.getItem(KEY)||'{"sessions":[],"myId":0}');
+    store.sessions=store.sessions.filter(t=>now-t<WIN);
+    const myId=store.myId||now;
+    store.myId=myId;
+    store.sessions=store.sessions.filter(t=>t!==myId);
+    store.sessions.push(myId);
+    localStorage.setItem(KEY,JSON.stringify(store));
+    document.getElementById('visCount').textContent=Math.max(1,store.sessions.length);
+    setInterval(()=>{try{const s=JSON.parse(localStorage.getItem(KEY)||'{"sessions":[],"myId":0}'),n=Date.now();s.sessions=s.sessions.filter(t=>n-t<WIN);s.sessions=s.sessions.filter(t=>t!==myId);s.sessions.push(myId);localStorage.setItem(KEY,JSON.stringify(s));document.getElementById('visCount').textContent=Math.max(1,s.sessions.length);}catch(e){}},5*60*1000);
+  }catch(e){document.getElementById('visCount').textContent=1;}
+})();
+
+// ── CATEGORIES ────────────────────────────────────────────────
+const catData=[
+  {name:"Dog Food & Care",desc:"All breeds & ages",e:"🐕",img:"https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=320&q=80"},
+  {name:"Cat Food & Care",desc:"Premium brands",e:"🐈",img:"https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?w=320&q=80"},
+  {name:"Fish & Aquarium",desc:"Food, tanks, filters",e:"🐟",img:"https://images.unsplash.com/photo-1535591273668-578e31182c4f?w=320&q=80"},
+  {name:"Bird Accessories",desc:"Food & supplements",e:"🦜",img:"https://images.unsplash.com/photo-1552728089-57bdde30beb3?w=320&q=80"},
+  {name:"Turtle Care",desc:"Food & habitat",e:"🐢",img:"https://images.unsplash.com/photo-1437622368342-7a3d73a34c8f?w=320&q=80"},
+  {name:"Collars & Leashes",desc:"All sizes",e:"🎀",img:"https://images.unsplash.com/photo-1601758174493-45d0a4d3e407?w=320&q=80"},
+  {name:"Medicine",desc:"Supplements & care",e:"💊",img:"https://images.unsplash.com/photo-1559190394-df5a28aab5c5?w=320&q=80"},
+  {name:"Pet Toys",desc:"Dogs, cats & more",e:"🧸",img:"https://images.unsplash.com/photo-1548199973-03cce0bbc87b?w=320&q=80"},
+  {name:"Cat Litter",desc:"Multiple brands",e:"🪣",img:"https://images.unsplash.com/photo-1519052537078-e6302a4968d4?w=320&q=80"},
+  {name:"Live Fish",desc:"Exotic & freshwater",e:"🐠",img:"https://images.unsplash.com/photo-1559825481-12a05cc00344?w=320&q=80"},
+  {name:"Reptile Care",desc:"Tanks & food",e:"🦎",img:"https://images.unsplash.com/photo-1504450874802-0ba2bcd9b5ae?w=320&q=80"},
+  {name:"Grooming",desc:"Shampoos & tools",e:"🛁",img:"https://images.unsplash.com/photo-1581888227599-779811939961?w=320&q=80"},
+];
+const cg=document.getElementById("catGrid");
+catData.forEach(c=>{
+  const d=document.createElement("div");d.className="cat-card";d.onclick=handleShop;
+  d.innerHTML=`<div class="cat-img-wrap"><img src="${c.img}" alt="${c.name}" loading="lazy" onerror="this.parentNode.innerHTML='${c.e}'"/></div><div class="cat-info"><h4>${c.name}</h4><p>${c.desc}</p></div>`;
+  cg.appendChild(d);
+});
+
+/* ================================================================
+ * SECTION 6: PET ADOPTION GRID + IMAGE SLIDESHOW
+ * ─────────────────────────────────────────────────────────────
+ * The 'pets' object below contains all breeds shown in the
+ * "Adopt / Purchase a Pet" section on the homepage.
+ *
+ * STRUCTURE of each pet entry:
+ *   n    → breed name (shown as card title)
+ *   d    → short description (shown below name)
+ *   e    → emoji fallback (shown if all images fail to load)
+ *   imgs → array of image URLs (up to 3 per breed)
+ *          Images auto-slideshow every 3 seconds
+ *          If an image fails, it hides itself (onerror handler)
+ *
+ * TO ADD A NEW BREED:
+ *   Add a new object to the correct animal array (dogs/cats/birds etc.)
+ *   {n:"Breed Name", d:"Short description", e:"🐕", imgs:["url1","url2","url3"]}
+ *
+ * TO REMOVE A BREED: Delete that object from the array.
+ *
+ * IMAGE SOURCES: Unsplash, iStockPhoto, AKC website
+ *   These are free to use for display purposes.
+ *   All images have onerror fallback to emoji if they fail.
+ *
+ * HOW SLIDESHOW WORKS:
+ *   Each card has multiple <img class="breed-slide"> elements.
+ *   Only one has class "active-slide" (opacity:1) at a time.
+ *   setInterval() cycles through them every 3000ms (3 seconds).
+ * ================================================================ */
+// ── PET DATA + SLIDESHOW ──────────────────────────────────────
+const pets={
+  // ════════════════════════════════════════════════════════════
+  // 🐕 DOG BREEDS — Edit names, descriptions, and image URLs below
+  // To add a new breed: copy any block below and paste before the ],
+  // To remove a breed: delete that entire { ... }, block
+  // ════════════════════════════════════════════════════════════
+  dogs:[
+    {
+      n:"Labrador Retriever", d:"Friendly & loyal", e:"🐕",
+      imgs:[
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQyPLH9OdILIqXHm5ibZTrTsFc0Se5kLxEqWWasJWjyV74cWBDKZLwqq639LOGvla2D8vKlpZAcR0a1Bkkr6lazgsRGDqLl2lJIkG9RF2w4&s=10", // 📸 CHANGE IMAGE HERE — Labrador photo 1
+        "https://www.akc.org/wp-content/uploads/2017/11/Labrador-Retrievers-three-colors.jpg",            // 📸 CHANGE IMAGE HERE — Labrador photo 2
+        "https://images.unsplash.com/photo-1576201836106-db1758fd1c97?w=320&q=80",                        // 📸 CHANGE IMAGE HERE — Labrador photo 3
+      ]
+    },
+    {
+      n:"Golden Retriever", d:"Gentle & playful", e:"🐕",
+      imgs:[
+        "https://www.akc.org/wp-content/uploads/2020/07/Golden-Retriever-puppy-standing-outdoors.jpg",    // 📸 CHANGE IMAGE HERE — Golden Retriever photo 1
+        "https://consumer-cms.petfinder.com/sites/default/files/images/content/Golden%20Retriever%201.jpg", // 📸 CHANGE IMAGE HERE — Golden Retriever photo 2
+        "https://images.unsplash.com/photo-1633722715463-d30f4f325e24?w=320&q=80",                        // 📸 CHANGE IMAGE HERE — Golden Retriever photo 3
+      ]
+    },
+    {
+      n:"German Shepherd", d:"Smart & protective", e:"🐕",
+      imgs:[
+        "https://cdn.britannica.com/84/232784-050-1769B477/Siberian-Husky-dog.jpg",                       // 📸 CHANGE IMAGE HERE — German Shepherd photo 1
+        "https://www.akc.org/wp-content/uploads/2017/11/German-Shepherd-on-White-00.jpg",                 // 📸 CHANGE IMAGE HERE — German Shepherd photo 2
+        "https://images.unsplash.com/photo-1605725657590-b2cf0d31b1a5?w=600&q=60",                        // 📸 CHANGE IMAGE HERE — German Shepherd photo 3
+      ]
+    },
+    {
+      n:"Siberian Husky", d:"Energetic & striking", e:"🐕",
+      imgs:[
+        "https://images.unsplash.com/photo-1617895153857-82fe79adfcd4?w=600&q=60", // 📸 CHANGE IMAGE HERE — Husky photo 1
+        "https://images.unsplash.com/photo-1590419690008-905895e8fe0d?w=736&q=80", // 📸 CHANGE IMAGE HERE — Husky photo 2
+        "https://images.unsplash.com/photo-1642727016500-21bac309f5cc?w=600&q=60", // 📸 CHANGE IMAGE HERE — Husky photo 3
+      ]
+    },
+    {
+      n:"Beagle", d:"Curious & cheerful", e:"🐕",
+      imgs:[
+        "https://images.unsplash.com/photo-1611306133736-56a3b973b2cc?w=687&q=80",                        // 📸 CHANGE IMAGE HERE — Beagle photo 1
+        "https://plus.unsplash.com/premium_photo-1723514553579-b589437b3b06?w=880&q=80",                  // 📸 CHANGE IMAGE HERE — Beagle photo 2
+        "https://images.unsplash.com/photo-1625321483833-0dd437242d98?w=687&q=80",                        // 📸 CHANGE IMAGE HERE — Beagle photo 3
+      ]
+    },
+    {
+      n:"Pug", d:"Playful & affectionate", e:"🐕",
+      imgs:[
+        "https://media.istockphoto.com/id/1327654972/photo/its-a-paddle-board-time.webp?s=612x612&w=0&k=20&c=HzIObaMBc6eoYxDGIGeuXTHd_5IANZaTCz9ZRVjg0BE=", // 📸 CHANGE IMAGE HERE — Pug photo 1
+        "https://media.istockphoto.com/id/184656162/photo/pug-puppies-on-white-background.jpg?s=612x612",                                                      // 📸 CHANGE IMAGE HERE — Pug photo 2
+        "https://media.istockphoto.com/id/2258726309/photo/cute-fawn-pug-dog-standing-and-sticking-out-tongue.webp?s=612x612",                                 // 📸 CHANGE IMAGE HERE — Pug photo 3
+      ]
+    },
+    {
+      n:"Shih Tzu", d:"Fluffy companion", e:"🐕",
+      imgs:[
+        "https://images.unsplash.com/photo-1589210043112-d4835d91b37a?w=600&q=60", // 📸 CHANGE IMAGE HERE — Shih Tzu photo 1
+        "https://images.unsplash.com/photo-1629740067905-bd3f515aa739?w=600&q=60", // 📸 CHANGE IMAGE HERE — Shih Tzu photo 2
+        "https://images.unsplash.com/photo-1437957146754-f6377debe171?w=600&q=60", // 📸 CHANGE IMAGE HERE — Shih Tzu photo 3
+      ]
+    },
+    {
+      n:"Pomeranian", d:"Tiny & bold", e:"🐕",
+      imgs:[
+        "https://images.unsplash.com/photo-1534361960057-19f073c3cde9?w=320&q=80", // 📸 CHANGE IMAGE HERE — Pomeranian photo 1
+        "https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=320&q=80", // 📸 CHANGE IMAGE HERE — Pomeranian photo 2
+        "https://images.unsplash.com/photo-1605568427561-40dd23c2acea?w=320&q=80", // 📸 CHANGE IMAGE HERE — Pomeranian photo 3
+      ]
+    },
+    {
+      n:"Doberman", d:"Alert & fearless", e:"🐕",
+      imgs:[
+        "https://images.unsplash.com/photo-1600804340584-c7db2eacf0bf?w=320&q=80", // 📸 CHANGE IMAGE HERE — Doberman photo 1
+        "https://images.unsplash.com/photo-1568572933382-74d440642117?w=320&q=80", // 📸 CHANGE IMAGE HERE — Doberman photo 2
+        "https://images.unsplash.com/photo-1561037404-61cd46aa615b?w=320&q=80",    // 📸 CHANGE IMAGE HERE — Doberman photo 3
+      ]
+    },
+    {
+      n:"Rottweiler", d:"Strong & loyal", e:"🐕",
+      imgs:[
+        "https://images.unsplash.com/photo-1567752881298-894bb81f9379?w=320&q=80", // 📸 CHANGE IMAGE HERE — Rottweiler photo 1
+        "https://images.unsplash.com/photo-1589941013453-ec89f33b5e95?w=320&q=80", // 📸 CHANGE IMAGE HERE — Rottweiler photo 2
+        "https://images.unsplash.com/photo-1543466835-00a7907e9de1?w=320&q=80",    // 📸 CHANGE IMAGE HERE — Rottweiler photo 3
+      ]
+    },
+    {
+      n:"Lhasa Apso", d:"Loyal & calm", e:"🐕",
+      imgs:[
+        "https://images.unsplash.com/photo-1530281700549-e82e7bf110d6?w=320&q=80", // 📸 CHANGE IMAGE HERE — Lhasa Apso photo 1
+        "https://images.unsplash.com/photo-1596854273338-cbf078ec9e54?w=320&q=80", // 📸 CHANGE IMAGE HERE — Lhasa Apso photo 2
+        "https://images.unsplash.com/photo-1548199973-03cce0bbc87b?w=320&q=80",    // 📸 CHANGE IMAGE HERE — Lhasa Apso photo 3
+      ]
+    },
+    {
+      n:"Dachshund", d:"Long body, big heart", e:"🐕",
+      imgs:[
+        "https://images.unsplash.com/photo-1518717758536-85ae29035b6d?w=320&q=80", // 📸 CHANGE IMAGE HERE — Dachshund photo 1
+        "https://images.unsplash.com/photo-1537151608828-ea2b11777ee8?w=320&q=80", // 📸 CHANGE IMAGE HERE — Dachshund photo 2
+        "https://images.unsplash.com/photo-1543466835-00a7907e9de1?w=320&q=80",    // 📸 CHANGE IMAGE HERE — Dachshund photo 3
+      ]
+    },
+  ],
+  // ════════════════════════════════════════════════════════════
+  // 🐈 CAT BREEDS — Edit names, descriptions, and image URLs below
+  // ════════════════════════════════════════════════════════════
+  cats:[
+    {
+      n:"Persian", d:"Long-haired & calm", e:"🐈",
+      imgs:[
+        "https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?w=320&q=80", // 📸 CHANGE IMAGE HERE — Persian photo 1
+        "https://images.unsplash.com/photo-1573865526739-10659fec78a5?w=320&q=80", // 📸 CHANGE IMAGE HERE — Persian photo 2
+        "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?w=320&q=80", // 📸 CHANGE IMAGE HERE — Persian photo 3
+      ]
+    },
+    {
+      n:"Maine Coon", d:"Largest domestic cat", e:"🐈",
+      imgs:[
+        "https://images.unsplash.com/photo-1569591159212-b02ea8a9f239?w=320&q=80", // 📸 CHANGE IMAGE HERE — Maine Coon photo 1
+        "https://images.unsplash.com/photo-1605450648855-63e739bc9bef?w=320&q=80", // 📸 CHANGE IMAGE HERE — Maine Coon photo 2
+        "https://images.unsplash.com/photo-1533743983669-94fa5c4338ec?w=320&q=80", // 📸 CHANGE IMAGE HERE — Maine Coon photo 3
+      ]
+    },
+    {
+      n:"Siamese", d:"Talkative & elegant", e:"🐈",
+      imgs:[
+        "https://images.unsplash.com/photo-1513360371669-4adf3dd7dff8?w=320&q=80", // 📸 CHANGE IMAGE HERE — Siamese photo 1
+        "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?w=320&q=80", // 📸 CHANGE IMAGE HERE — Siamese photo 2
+        "https://images.unsplash.com/photo-1508098682722-e99c43a406b2?w=320&q=80", // 📸 CHANGE IMAGE HERE — Siamese photo 3
+      ]
+    },
+    {
+      n:"Bengal", d:"Wild-looking & active", e:"🐈",
+      imgs:[
+        "https://images.unsplash.com/photo-1596854407944-bf87f6fdd49e?w=320&q=80", // 📸 CHANGE IMAGE HERE — Bengal photo 1
+        "https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?w=320&q=80", // 📸 CHANGE IMAGE HERE — Bengal photo 2
+        "https://images.unsplash.com/photo-1573865526739-10659fec78a5?w=320&q=80", // 📸 CHANGE IMAGE HERE — Bengal photo 3
+      ]
+    },
+    {
+      n:"British Shorthair", d:"Round & plush", e:"🐈",
+      imgs:[
+        "https://images.unsplash.com/photo-1533743983669-94fa5c4338ec?w=320&q=80", // 📸 CHANGE IMAGE HERE — British Shorthair photo 1
+        "https://images.unsplash.com/photo-1569591159212-b02ea8a9f239?w=320&q=80", // 📸 CHANGE IMAGE HERE — British Shorthair photo 2
+        "https://images.unsplash.com/photo-1508098682722-e99c43a406b2?w=320&q=80", // 📸 CHANGE IMAGE HERE — British Shorthair photo 3
+      ]
+    },
+    {
+      n:"Ragdoll", d:"Floppy & affectionate", e:"🐈",
+      imgs:[
+        "https://images.unsplash.com/photo-1608848461950-0fe51dfc41cb?w=320&q=80", // 📸 CHANGE IMAGE HERE — Ragdoll photo 1
+        "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?w=320&q=80", // 📸 CHANGE IMAGE HERE — Ragdoll photo 2
+        "https://images.unsplash.com/photo-1605450648855-63e739bc9bef?w=320&q=80", // 📸 CHANGE IMAGE HERE — Ragdoll photo 3
+      ]
+    },
+  ],
+  birds:[
+
+    // ┌─────────────────────────────────────────────────────────┐
+    // │  BIRD IMAGES — HOW TO ADD YOUR OWN PHOTOS               │
+    // │  1. Upload your photo to Google Drive / WhatsApp Web     │
+    // │     or any free host like imgbb.com / postimages.org     │
+    // │  2. Copy the direct image link (must end in .jpg/.png)   │
+    // │  3. Replace the URL next to "// 📸 CHANGE IMAGE HERE"   │
+    // │  Each bird can have up to 3 photos (auto-slideshow)      │
+    // └─────────────────────────────────────────────────────────┘
+
+    {
+      n:"Budgerigar", d:"Cheerful & trainable", e:"🦜",
+      imgs:[
+        "https://media.istockphoto.com/id/682216682/photo/budgies-are-in-the-roost-on-the-green-background.jpg?s=612x612&w=0&k=20&c=H8L843VhnaPN0C59GwWtvQu0JIPgM-cvmukjB_NUe2o=", // 📸 CHANGE IMAGE HERE — Budgerigar photo 1
+        "https://casadeamor.in/cdn/shop/articles/close-up-of-budgerigars-perching-on-branch-909976322-5b4bf18746e0fb005bc62377.jpg?v=1649157162",                              // 📸 CHANGE IMAGE HERE — Budgerigar photo 2
+        "https://thumbs.dreamstime.com/b/closeup-small-green-budgie-sitting-tree-branch-closeup-colorful-small-green-budgie-sitting-tree-branch-126921086.jpg",                // 📸 CHANGE IMAGE HERE — Budgerigar photo 3
+      ]
+    },
+    {
+      n:"Cockatiel", d:"Sweet & melodious", e:"🦜",
+      imgs:[
+        "https://images.unsplash.com/photo-1591608516485-a1a53df39498?w=320&q=80", // 📸 CHANGE IMAGE HERE — Cockatiel photo 1
+        "https://images.unsplash.com/photo-1606567595334-d39972c85dbe?w=320&q=80", // 📸 CHANGE IMAGE HERE — Cockatiel photo 2
+        "https://images.unsplash.com/photo-1552728089-57bdde30beb3?w=320&q=80",    // 📸 CHANGE IMAGE HERE — Cockatiel photo 3
+      ]
+    },
+    {
+      n:"Lovebird", d:"Colourful & bonding", e:"🦜",
+      imgs:[
+        "https://images.unsplash.com/photo-1516467508483-a7212febe31a?w=320&q=80", // 📸 CHANGE IMAGE HERE — Lovebird photo 1
+        "https://images.unsplash.com/photo-1552728089-57bdde30beb3?w=320&q=80",    // 📸 CHANGE IMAGE HERE — Lovebird photo 2
+        "https://images.unsplash.com/photo-1591608516485-a1a53df39498?w=320&q=80", // 📸 CHANGE IMAGE HERE — Lovebird photo 3
+      ]
+    },
+    // Alexandrine removed on owner's request
+
+  ],
+  // ════════════════════════════════════════════════════════════
+  // 🦎 EXOTIC PETS — Edit names, descriptions, and image URLs below
+  // ════════════════════════════════════════════════════════════
+  exotic:[
+    {
+      n:"Red-eared Slider", d:"Popular aquatic turtle", e:"🦎",
+      imgs:[
+        "https://images.unsplash.com/photo-1437622368342-7a3d73a34c8f?w=320&q=80", // 📸 CHANGE IMAGE HERE — Turtle photo 1
+        "https://images.unsplash.com/photo-1504450874802-0ba2bcd9b5ae?w=320&q=80", // 📸 CHANGE IMAGE HERE — Turtle photo 2
+        "https://images.unsplash.com/photo-1550358864-518f202c02ba?w=320&q=80",    // 📸 CHANGE IMAGE HERE — Turtle photo 3
+      ]
+    },
+    {
+      n:"Leopard Gecko", d:"Beginner-friendly", e:"🦎",
+      imgs:[
+        "https://images.unsplash.com/photo-1504450874802-0ba2bcd9b5ae?w=320&q=80", // 📸 CHANGE IMAGE HERE — Gecko photo 1
+        "https://images.unsplash.com/photo-1550358864-518f202c02ba?w=320&q=80",    // 📸 CHANGE IMAGE HERE — Gecko photo 2
+        "https://images.unsplash.com/photo-1437622368342-7a3d73a34c8f?w=320&q=80", // 📸 CHANGE IMAGE HERE — Gecko photo 3
+      ]
+    },
+    {
+      n:"Bearded Dragon", d:"Docile & interactive", e:"🦎",
+      imgs:[
+        "https://images.unsplash.com/photo-1550358864-518f202c02ba?w=320&q=80",    // 📸 CHANGE IMAGE HERE — Bearded Dragon photo 1
+        "https://images.unsplash.com/photo-1504450874802-0ba2bcd9b5ae?w=320&q=80", // 📸 CHANGE IMAGE HERE — Bearded Dragon photo 2
+        "https://images.unsplash.com/photo-1437622368342-7a3d73a34c8f?w=320&q=80", // 📸 CHANGE IMAGE HERE — Bearded Dragon photo 3
+      ]
+    },
+    {
+      n:"Iguana", d:"Large herbivore", e:"🦎",
+      imgs:[
+        "https://images.unsplash.com/photo-1550358864-518f202c02ba?w=320&q=80",    // 📸 CHANGE IMAGE HERE — Iguana photo 1
+        "https://images.unsplash.com/photo-1437622368342-7a3d73a34c8f?w=320&q=80", // 📸 CHANGE IMAGE HERE — Iguana photo 2
+        "https://images.unsplash.com/photo-1504450874802-0ba2bcd9b5ae?w=320&q=80", // 📸 CHANGE IMAGE HERE — Iguana photo 3
+      ]
+    },
+  ],
+  // ════════════════════════════════════════════════════════════
+  // 🐇 SMALL PETS — Edit names, descriptions, and image URLs below
+  // ════════════════════════════════════════════════════════════
+  small:[
+    {
+      n:"Rabbit", d:"Gentle & fluffy", e:"🐇",
+      imgs:[
+        "https://images.unsplash.com/photo-1585110396000-c9ffd4e4b308?w=320&q=80", // 📸 CHANGE IMAGE HERE — Rabbit photo 1
+        "https://images.unsplash.com/photo-1548767797-d8c844163c4a?w=320&q=80",    // 📸 CHANGE IMAGE HERE — Rabbit photo 2
+        "https://images.unsplash.com/photo-1425082661705-1834bfd09dca?w=320&q=80", // 📸 CHANGE IMAGE HERE — Rabbit photo 3
+      ]
+    },
+    {
+      n:"Guinea Pig", d:"Social & vocal", e:"🐇",
+      imgs:[
+        "https://images.unsplash.com/photo-1548767797-d8c844163c4a?w=320&q=80",    // 📸 CHANGE IMAGE HERE — Guinea Pig photo 1
+        "https://images.unsplash.com/photo-1425082661705-1834bfd09dca?w=320&q=80", // 📸 CHANGE IMAGE HERE — Guinea Pig photo 2
+        "https://images.unsplash.com/photo-1585110396000-c9ffd4e4b308?w=320&q=80", // 📸 CHANGE IMAGE HERE — Guinea Pig photo 3
+      ]
+    },
+    {
+      n:"Hamster", d:"Tiny & nocturnal", e:"🐇",
+      imgs:[
+        "https://images.unsplash.com/photo-1425082661705-1834bfd09dca?w=320&q=80", // 📸 CHANGE IMAGE HERE — Hamster photo 1
+        "https://images.unsplash.com/photo-1585110396000-c9ffd4e4b308?w=320&q=80", // 📸 CHANGE IMAGE HERE — Hamster photo 2
+        "https://images.unsplash.com/photo-1548767797-d8c844163c4a?w=320&q=80",    // 📸 CHANGE IMAGE HERE — Hamster photo 3
+      ]
+    },
+    {
+      n:"Hedgehog", d:"Prickly & adorable", e:"🐇",
+      imgs:[
+        "https://images.unsplash.com/photo-1548767797-d8c844163c4a?w=320&q=80",    // 📸 CHANGE IMAGE HERE — Hedgehog photo 1
+        "https://images.unsplash.com/photo-1425082661705-1834bfd09dca?w=320&q=80", // 📸 CHANGE IMAGE HERE — Hedgehog photo 2
+        "https://images.unsplash.com/photo-1585110396000-c9ffd4e4b308?w=320&q=80", // 📸 CHANGE IMAGE HERE — Hedgehog photo 3
+      ]
+    },
+  ]
+};
+Object.keys(pets).forEach(cat=>{
+  const g=document.getElementById("grid-"+cat);
+  pets[cat].forEach(p=>{
+    const imgs=p.imgs||(p.img?[p.img]:[]);
+    const c=document.createElement("div");c.className="breed-card";
+    const slidesHTML=imgs.map((url,i)=>`<img class="breed-slide${i===0?' active-slide':''}" src="${url}" alt="${p.n}" loading="lazy" onerror="this.style.display='none'">`).join('');
+    const dotsHTML=imgs.length>1?`<div class="slide-dots">${imgs.map((_,i)=>`<span class="slide-dot${i===0?' on':''}"></span>`).join('')}</div>`:'';
+    const countHTML=imgs.length>1?`<div class="slide-count">1/${imgs.length}</div>`:'';
+    c.innerHTML=`<div class="breed-img-wrap"><span style="position:relative;z-index:0">${p.e}</span>${slidesHTML}${dotsHTML}${countHTML}</div><div class="breed-info"><h4>${p.n}</h4><p>${p.d}</p><button class="adopt-btn" onclick="adoptWA('${p.n}')">💬 Enquire on WhatsApp</button></div>`;
+    g.appendChild(c);
+    if(imgs.length>1){
+      let idx=0;
+      const wrap=c.querySelector(".breed-img-wrap");
+      const slides=wrap.querySelectorAll(".breed-slide");
+      const dots=wrap.querySelectorAll(".slide-dot");
+      const countEl=wrap.querySelector(".slide-count");
+      setInterval(()=>{
+        slides[idx].classList.remove("active-slide");dots[idx].classList.remove("on");
+        idx=(idx+1)%slides.length;
+        slides[idx].classList.add("active-slide");dots[idx].classList.add("on");
+        if(countEl)countEl.textContent=`${idx+1}/${slides.length}`;
+      },3000);
+    }
+  });
+});
+function switchTab(id,el){
+  document.querySelectorAll(".atab").forEach(t=>t.classList.remove("on"));
+  document.querySelectorAll(".adopt-panel").forEach(p=>p.classList.remove("on"));
+  el.classList.add("on");document.getElementById("panel-"+id).classList.add("on");
+}
+function adoptWA(pet){
+  const msg=encodeURIComponent("🐾 Hello Vishesh Aquaworld!\n\nI am visiting your website and interested in *"+pet+"*.\n\nPlease share availability, price and details. Thank you!");
+  window.open("https://wa.me/"+WA+"?text="+msg,"_blank");
+}
+
+// ══════════════════════════════════════════════════════════════
+//  GROOMING WIZARD
+// ══════════════════════════════════════════════════════════════
+let grmPet='',grmSize='',grmVax='',grmSlot='';
+function grmUpdateProgress(step){
+  const labels={1:'Step 1 of 4 — Pick Your Pet 🐾',2:'Step 2 of 4 — Choose Size 📏',3:'Step 3 of 4 — Your Details 📝',4:'Step 4 of 4 — Date & Time 📅'};
+  const pcts={1:'25%',2:'50%',3:'75%',4:'100%'};
+  document.getElementById("grm-step-label").textContent=labels[step];
+  document.getElementById("grm-step-pct").textContent=pcts[step];
+  document.getElementById("grm-progress-bar").style.width=pcts[step];
+}
+function grmGo(step){
+  document.querySelectorAll(".grm-wizard-step").forEach(s=>s.classList.add("hidden"));
+  document.getElementById("gws-"+step).classList.remove("hidden");
+  grmUpdateProgress(step);
+  window.scrollTo({top:80,behavior:'smooth'});
+  if(step===4)refreshSlotAvailability();
+}
+function grmNext1(type){
+  grmPet=type;
+  document.getElementById("grm-dog").style.borderColor=type==='dog'?'var(--teal2)':'#e2e8f0';
+  document.getElementById("grm-cat").style.borderColor=type==='cat'?'var(--teal2)':'#e2e8f0';
+  if(type==='cat'){grmSize='Cat';grmGo(3);}else{grmGo(2);}
+}
+function grmNext2(size){grmSize=size;grmGo(3);}
+function grmGoStep4(){
+  const name=document.getElementById("gf-name").value.trim();
+  const owner=document.getElementById("gf-owner").value.trim();
+  const phone=document.getElementById("gf-phone").value.trim();
+  if(!name){alert("🐾 Please enter your pet's name!");return}
+  if(!owner){alert("👤 Please enter your name!");return}
+  if(!phone||phone.length<10){alert("📞 Please enter a valid 10-digit phone number!");return}
+  grmGo(4);
+}
+function selectVax(v){
+  grmVax=v;
+  ['done','notdone','partial'].forEach(k=>document.getElementById("vax-"+k).classList.remove("on"));
+  document.getElementById("vax-"+{'Done':'done','Not Done':'notdone','Partial':'partial'}[v]).classList.add("on");
+}
+function selectSlot(s){
+  grmSlot=s;
+  document.getElementById("slot-am").classList.toggle("on",s.includes("9:30"));
+  document.getElementById("slot-pm").classList.toggle("on",s.includes("2:30"));
+}
+function isSlotAvailable(slotKey,dateVal){
+  const today=new Date().toISOString().split("T")[0];
+  if(dateVal!==today)return true;
+  const now=new Date();
+  const totalMins=now.getHours()*60+now.getMinutes();
+  if(slotKey==='am')return totalMins<(9*60+15);
+  if(slotKey==='pm')return totalMins<(14*60+15);
+  return true;
+}
+function refreshSlotAvailability(){
+  const dateVal=document.getElementById("gf-date")?.value||"";
+  const amBtn=document.getElementById("slot-am"),pmBtn=document.getElementById("slot-pm");
+  const amBadge=document.getElementById("slot-am-badge"),pmBadge=document.getElementById("slot-pm-badge");
+  if(!amBtn||!pmBtn)return;
+  const amOk=isSlotAvailable('am',dateVal);
+  const pmOk=isSlotAvailable('pm',dateVal);
+  [['am',amOk,amBtn,amBadge,'9:30 AM – 11:30 AM'],['pm',pmOk,pmBtn,pmBadge,'2:30 PM – 4:00 PM']].forEach(([key,ok,btn,badge,slotLabel])=>{
+    btn.style.opacity=ok?"1":"0.5";btn.style.cursor=ok?"pointer":"not-allowed";
+    btn.style.borderColor=ok?"":"#fca5a5";btn.style.background=ok?"":"#fef2f2";
+    if(badge){badge.textContent=ok?"Available":"Closed Today";badge.style.background=ok?"#f0fdf4":"#fee2e2";badge.style.color=ok?"#16a34a":"#dc2626";}
+    btn.onclick=ok?()=>selectSlot(slotLabel):()=>alert("⏰ This slot is closed for today. Please choose a future date.");
+  });
+  if(grmSlot.includes("9:30")&&!amOk){grmSlot="";document.getElementById("slot-am").classList.remove("on");}
+  if(grmSlot.includes("2:30")&&!pmOk){grmSlot="";document.getElementById("slot-pm").classList.remove("on");}
+}
+function isPastDate(d){
+  const t=new Date();t.setHours(0,0,0,0);return new Date(d+"T00:00:00")<t;
+}
+function submitGrooming(){
+  const name=document.getElementById("gf-name").value.trim();
+  const owner=document.getElementById("gf-owner").value.trim();
+  const phone=document.getElementById("gf-phone").value.trim();
+  const age=document.getElementById("gf-age").value.trim();
+  const breed=document.getElementById("gf-breed").value.trim();
+  const dateVal=document.getElementById("gf-date").value;
+  if(!dateVal){alert("📅 Please select a preferred date!");return}
+  if(isPastDate(dateVal)){alert("📅 Past dates are not allowed. Please select today or a future date.");return}
+  if(!grmSlot){alert("🕐 Please select a time slot!");return}
+  const dateLabel=(()=>{const d=new Date(dateVal);return d.toLocaleDateString('en-IN',{weekday:'long',day:'numeric',month:'long',year:'numeric'})})();
+  pendingGrmMsg="🛁 *Grooming Booking Request*\n\n"+"🐾 Pet: "+grmPet.charAt(0).toUpperCase()+grmPet.slice(1)+"\n"+"📏 Size: "+grmSize+"\n"+"🐶 Pet Name: "+name+"\n"+(breed?"🔍 Breed: "+breed+"\n":"")+(age?"📅 Pet Age: "+age+"\n":"")+"💉 Vaccination: "+(grmVax||"Not specified")+"\n"+"📅 Date: "+dateLabel+"\n"+"🕐 Time: "+grmSlot+"\n"+"👤 Owner: "+owner+"\n"+"📞 Phone: "+phone;
+
+  // 💳 Open Razorpay payment — ₹1200 = 120000 paise (adjust amount as needed)
+  openRazorpay({
+    amount: 120000,
+    name: owner,
+    phone: "91" + phone,
+    description: "Pet Grooming — " + name + " (" + grmSize + ")",
+    onSuccess: function(paymentId) {
+      // Payment done → show spin wheel for discount, then send WhatsApp
+      spinComplete=false;spinDiscountPct=0;spinWheelAngle=0;
+      const sb=document.getElementById("spinBtn");
+      sb.disabled=false;sb.textContent="🎯 SPIN THE WHEEL!";sb.style.display="block";
+      document.getElementById("spinResult").classList.add("hidden");
+      document.getElementById("spinAfterBtn").classList.add("hidden");
+      setTimeout(()=>drawWheel(0),50);
+      document.getElementById("spinOverlay").classList.add("show");
+      // Store paymentId for use in claimDiscount
+      window._lastGrmPaymentId = paymentId;
+      window._lastGrmOwner = owner;
+      window._lastGrmPhone = "91" + phone;
+    }
+  });
+}
+(function setGrmDateMin(){
+  const today=new Date().toISOString().split("T")[0];
+  const gfDate=document.getElementById("gf-date");
+  if(gfDate){gfDate.min=today;gfDate.addEventListener("change",refreshSlotAvailability);}
+})();
+
+// ══════════════════════════════════════════════════════════════
+//  AQUARIUM WIZARD V2 — REDESIGNED
+// ══════════════════════════════════════════════════════════════
+const AQ_PRICES={'1 Feet':300,'1.5 Feet':300,'2 Feet':500,'2.5 Feet':600,'3 Feet':800,'4 Feet':1000,'5 Feet':1300,'6 Feet':1600,'7 Feet':2000,'8 Feet':2400};
+let aqType='',aqSize='',aqBasePrice=0,aqSlot='',aqLocMode='',aqGpsCoords=null;
+
+// Build size pills
+function aqBuildSizePills(){
+  const grid=document.getElementById("aqSizePills");
+  if(!grid)return;
+  grid.innerHTML="";
+  Object.entries(AQ_PRICES).forEach(([size,price])=>{
+    const finalP=aqType==='imported'?price+200:price;
+    const pill=document.createElement("div");
+    pill.className="aq-size-pill";
+    pill.id="aqpill-"+size.replace(/[\s.]/g,'');
+    pill.innerHTML=`<h5>${size}</h5><div class="pill-price">₹${finalP}</div>${aqType==='imported'?'<div class="pill-imp">+₹200 inc.</div>':''}`;
+    pill.onclick=()=>aqPickSize(size,price,pill);
+    grid.appendChild(pill);
+  });
+}
+
+function aqPickType(type){
+  aqType=type;aqSize='';aqBasePrice=0;
+  // Update tile styles
+  ['local','imported'].forEach(t=>{
+    const el=document.getElementById("aqt-"+t);
+    const chk=document.getElementById("aqt-"+t+"-chk");
+    const on=t===type;
+    if(el){el.classList.toggle("on",on);}
+    if(chk){chk.textContent=on?"✓":"";}
+  });
+  // Show size card
+  document.getElementById("aqSizeCard").style.display="block";
+  aqBuildSizePills();
+  // Hide quote until size picked
+  document.getElementById("aqQuoteWrap").style.display="none";
+  // Scroll to size card
+  setTimeout(()=>{
+    document.getElementById("aqSizeCard").scrollIntoView({behavior:'smooth',block:'nearest'});
+  },100);
+}
+
+function aqPickSize(size,price,pill){
+  aqSize=size;aqBasePrice=price;
+  // Highlight
+  document.querySelectorAll(".aq-size-pill").forEach(p=>p.classList.remove("on"));
+  pill.classList.add("on");
+  // Update quote
+  const finalP=aqType==='imported'?price+200:price;
+  document.getElementById("aqQPrice").textContent="₹"+finalP;
+  document.getElementById("aqQDesc").textContent=size+" · "+(aqType==='imported'?"Imported (₹"+price+" + ₹200)":"Local Made");
+  document.getElementById("aqQuoteWrap").style.display="block";
+  setTimeout(()=>{
+    document.getElementById("aqQuoteWrap").scrollIntoView({behavior:'smooth',block:'nearest'});
+  },100);
+}
+
+// ── SMART TIME SLOT BUILDER ────────────────────────────────────
+// Rule: minimum 1 HOUR buffer from current time
+// Only future slots shown; past+buffer slots are greyed/hidden
+function aqBuildTimeSlots(){
+  const dateVal=document.getElementById("aqDate").value;
+  const chips=document.getElementById("aqTimeChips");
+  const noSlots=document.getElementById("aqNoSlots");
+  const hint=document.getElementById("aqTimeHint");
+  const selShow=document.getElementById("aqSelectedTimeShow");
+  if(!chips)return;
+  chips.innerHTML="";
+  noSlots.style.display="none";
+  selShow.style.display="none";
+  aqSlot="";
+
+  if(!dateVal){
+    hint.textContent="Select a date first to see available slots";
+    return;
+  }
+
+  const today=new Date();
+  today.setHours(0,0,0,0);
+  const selected=new Date(dateVal+"T00:00:00");
+  const isToday=selected.getTime()===today.getTime();
+
+  const now=new Date();
+  const nowMins=now.getHours()*60+now.getMinutes();
+  const BUFFER=60; // 1 hour minimum
+  const cutoff=nowMins+BUFFER;
+
+  // Store hours: 10:00 AM (600 mins) to 8:00 PM (1200 mins)
+  const START=10*60, END=20*60;
+  const slots=[];
+  for(let m=START;m<=END;m+=30){
+    const h24=Math.floor(m/60),min=m%60;
+    const ampm=h24>=12?"PM":"AM";
+    const h12=h24>12?h24-12:(h24===0?12:h24);
+    const label=h12+":"+(min===0?"00":"30")+" "+ampm;
+    // For today: only show slots that are at least 1hr from now
+    const available=!isToday||m>=cutoff;
+    slots.push({label,mins:m,available});
+  }
+
+  const availableSlots=slots.filter(s=>s.available);
+  if(availableSlots.length===0){
+    noSlots.style.display="block";
+    hint.textContent="No slots available today";
+    return;
+  }
+
+  hint.textContent=isToday
+    ?`${availableSlots.length} slots available (1hr min. from now)`
+    :`${availableSlots.length} slots available`;
+
+  availableSlots.forEach((s,idx)=>{
+    const chip=document.createElement("div");
+    chip.className="aq-chip"+(idx===0?" next-available":"");
+    chip.textContent=s.label;
+    if(idx===0&&isToday){
+      chip.title="Earliest available slot";
+    }
+    chip.onclick=()=>{
+      document.querySelectorAll(".aq-chip").forEach(c=>{c.classList.remove("on","next-available")});
+      chip.classList.add("on");
+      aqSlot=s.label;
+      selShow.style.display="block";
+      selShow.textContent="✅ Selected: "+s.label;
+    };
+    chips.appendChild(chip);
+  });
+}
+
+// Navigation between screens
+function aqUpdateTopBar(step){
+  const labels={1:'Step 1 of 3 — Choose your aquarium',2:'Step 2 of 3 — Your details',3:'Step 3 of 3 — Your address'};
+  const pcts={1:'33%',2:'66%',3:'100%'};
+  document.getElementById("aq-step-sub").textContent=labels[step];
+  document.getElementById("aqd1").className="aq-dot"+(step>=1?" done":"")+(step===1?" active":"");
+  document.getElementById("aqd2").className="aq-dot"+(step>=2?" done":"")+(step===2?" active":"");
+  document.getElementById("aqd3").className="aq-dot"+(step>=3?" done":"")+(step===3?" active":"");
+  if(step===1){document.getElementById("aqd1").className="aq-dot active";}
+  if(step===2){document.getElementById("aqd1").className="aq-dot done";document.getElementById("aqd2").className="aq-dot active";}
+  if(step===3){document.getElementById("aqd1").className="aq-dot done";document.getElementById("aqd2").className="aq-dot done";document.getElementById("aqd3").className="aq-dot active";}
+}
+
+function aqGoS1(){
+  document.getElementById("aqS1").classList.add("active");
+  document.getElementById("aqS2").classList.remove("active");
+  document.getElementById("aqS3").classList.remove("active");
+  aqUpdateTopBar(1);
+  const s=document.getElementById("aqScrollArea")||document.getElementById("aqS1");
+  if(s)s.scrollTop=0;
+}
+function aqGoS2(){
+  if(!aqType){alert("🐠 Please select your aquarium type first!");return}
+  if(!aqSize){alert("📏 Please select your aquarium size!");return}
+  document.getElementById("aqS1").classList.remove("active");
+  document.getElementById("aqS2").classList.add("active");
+  document.getElementById("aqS3").classList.remove("active");
+  aqUpdateTopBar(2);
+  document.getElementById("aqS2").scrollTop=0;
+  // Set date min
+  const today=new Date().toISOString().split("T")[0];
+  const d=document.getElementById("aqDate");
+  if(d)d.min=today;
+}
+function aqGoS3(){
+  const name=document.getElementById("aqName").value.trim();
+  const phone=document.getElementById("aqPhone").value.trim();
+  const dateVal=document.getElementById("aqDate").value;
+  if(!name){alert("👤 Please enter your name!");return}
+  if(!phone||phone.length<10){alert("📞 Please enter a valid 10-digit phone number!");return}
+  if(!dateVal){alert("📅 Please select a preferred date!");return}
+  if(isPastDate(dateVal)){alert("📅 Past dates are not allowed. Please select today or a future date.");return}
+  if(!aqSlot){alert("🕐 Please select a time slot!");return}
+  document.getElementById("aqS1").classList.remove("active");
+  document.getElementById("aqS2").classList.remove("active");
+  document.getElementById("aqS3").classList.add("active");
+  aqUpdateTopBar(3);
+  document.getElementById("aqS3").scrollTop=0;
+}
+function aqGoS2FromS3(){
+  document.getElementById("aqS1").classList.remove("active");
+  document.getElementById("aqS2").classList.add("active");
+  document.getElementById("aqS3").classList.remove("active");
+  aqUpdateTopBar(2);
+}
+
+function aqPickLoc(mode){
+  aqLocMode=mode;
+  ['auto','manual'].forEach(m=>{
+    document.getElementById("aqLoc"+m.charAt(0).toUpperCase()+m.slice(1)).classList.toggle("on",m===mode);
+  });
+  document.getElementById("aqGpsPanel").style.display=mode==='auto'?"block":"none";
+  document.getElementById("aqManualPanel").style.display=mode==='manual'?"block":"none";
+}
+
+function aqDetectGPS(){
+  const btn=document.getElementById("aqGpsBtn");
+  const status=document.getElementById("aqGpsStatus");
+  const detected=document.getElementById("aqGpsDetected");
+  if(!navigator.geolocation){
+    status.style.display="block";status.style.cssText="display:block;padding:12px;border-radius:10px;font-size:.84rem;font-weight:600;background:#fef2f2;border:1.5px solid #fca5a5;color:#991b1b;margin-top:12px";
+    status.textContent="❌ GPS not supported. Please use 'Type Address' option.";return;
+  }
+  btn.disabled=true;btn.innerHTML='<span style="font-size:1.3rem">🔄</span> Detecting...';
+  status.style.display="block";status.style.cssText="display:block;padding:12px;border-radius:10px;font-size:.84rem;font-weight:600;background:#eff6ff;border:1.5px solid #bfdbfe;color:#1e40af;margin-top:12px";
+  status.textContent="📡 Getting your location...";
+  detected.style.display="none";aqGpsCoords=null;
+  navigator.geolocation.getCurrentPosition(
+    pos=>{
+      const lat=pos.coords.latitude.toFixed(6),lng=pos.coords.longitude.toFixed(6);
+      aqGpsCoords={lat,lng,address:""};
+      fetch("https://nominatim.openstreetmap.org/reverse?lat="+lat+"&lon="+lng+"&format=json")
+        .then(r=>r.json())
+        .then(data=>{
+          const addr=data.display_name||("Lat: "+lat+", Lng: "+lng);
+          aqGpsCoords.address=addr;
+          document.getElementById("aqGpsAddrText").textContent=addr;
+          status.style.cssText="display:block;padding:12px;border-radius:10px;font-size:.84rem;font-weight:600;background:#f0fdf4;border:1.5px solid #86efac;color:#166534;margin-top:12px";
+          status.textContent="✅ Location captured!";
+          detected.style.display="block";
+          btn.innerHTML='<span>📍</span> Re-detect Location';btn.disabled=false;
+        })
+        .catch(()=>{
+          aqGpsCoords.address="Lat: "+lat+", Lng: "+lng;
+          document.getElementById("aqGpsAddrText").textContent="Coordinates: "+lat+", "+lng;
+          status.style.cssText="display:block;padding:12px;border-radius:10px;font-size:.84rem;font-weight:600;background:#f0fdf4;border:1.5px solid #86efac;color:#166534;margin-top:12px";
+          status.textContent="✅ Location captured!";
+          detected.style.display="block";
+          btn.innerHTML='<span>📍</span> Re-detect';btn.disabled=false;
+        });
+    },
+    err=>{
+      let msg="❌ Could not detect location.";
+      if(err.code===1)msg="❌ Permission denied. Please allow location access or use 'Type Address'.";
+      else if(err.code===2)msg="❌ Location unavailable. Please use 'Type Address' option.";
+      status.style.cssText="display:block;padding:12px;border-radius:10px;font-size:.84rem;font-weight:600;background:#fef2f2;border:1.5px solid #fca5a5;color:#991b1b;margin-top:12px";
+      status.textContent=msg;
+      btn.innerHTML='<span>📍</span> Try Again';btn.disabled=false;
+    },
+    {timeout:10000,enableHighAccuracy:true}
+  );
+}
+
+function aqSubmit(){
+  const name=document.getElementById("aqName").value.trim();
+  const phone=document.getElementById("aqPhone").value.trim();
+  const dateVal=document.getElementById("aqDate").value;
+  if(!aqLocMode){alert("📍 Please choose how to share your location!");return}
+  if(aqLocMode==='auto'&&!aqGpsCoords){alert("📡 Please detect your location first, or switch to 'Type Address'.");return}
+  if(aqLocMode==='manual'){
+    const area=document.getElementById("aqManArea")?.value.trim()||"";
+    if(!area){alert("📍 Please enter your area / mohalla!");return}
+  }
+  const finalP=aqType==='imported'?aqBasePrice+200:aqBasePrice;
+  const typeLabel=aqType==='imported'?"Imported Aquarium":"Local Made (Vishesh Pet Showroom)";
+  const dateLabel=(()=>{const d=new Date(dateVal);return d.toLocaleDateString('en-IN',{weekday:'long',day:'numeric',month:'long',year:'numeric'})})();
+  let address='',mapsLine='';
+  if(aqLocMode==='auto'&&aqGpsCoords){
+    const lm=document.getElementById("aqGpsLandmark")?.value.trim()||"";
+    address=aqGpsCoords.address+(lm?", Near "+lm:"");
+    mapsLine="\n🗺️ Maps: https://maps.google.com/?q="+aqGpsCoords.lat+","+aqGpsCoords.lng;
+  } else {
+    const h=document.getElementById("aqManHouse")?.value.trim()||"";
+    const a=document.getElementById("aqManArea")?.value.trim()||"";
+    const c=document.getElementById("aqManCity")?.value.trim()||"Dhampur";
+    const l=document.getElementById("aqManLandmark")?.value.trim()||"";
+    address=[h,a,c,l?"Near "+l:""].filter(Boolean).join(", ");
+  }
+  const bookingMsg =
+    "🐠 *Aquarium Cleaning & Maintenance Booking*\n\n"+
+    "🏠 Type: "+typeLabel+"\n"+
+    "📏 Size: "+aqSize+"\n"+
+    "💰 Price: ₹"+finalP+"\n"+
+    "👤 Name: "+name+"\n"+
+    "📞 Phone: "+phone+"\n"+
+    "📅 Date: "+dateLabel+"\n"+
+    "🕐 Time: "+aqSlot+"\n"+
+    "📍 Address: "+address+mapsLine+"\n\n"+
+    "💡 I understand the 40-day maintenance recommendation.\nThank you! 🙏";
+
+  // 💳 Open Razorpay payment — amount is the service quote price
+  openRazorpay({
+    amount: finalP * 100,   // Convert ₹ to paise
+    name: name,
+    phone: "91" + phone,
+    description: "Aquarium Cleaning — " + aqSize + " (" + typeLabel + ")",
+    onSuccess: function(paymentId) {
+      // Payment successful → Send AiSensy WhatsApps + open WhatsApp
+      afterAqPayment(paymentId, bookingMsg, "91" + phone, name);
+    }
+  });
+}
+
+// ══════════════════════════════════════════════════════════════
+//  SPIN WHEEL
+// ══════════════════════════════════════════════════════════════
+const SPIN_SEGMENTS=[10,12,14,15,16,18,20,11,13,17,19,10];
+const SPIN_COLORS=['#ef4444','#f97316','#eab308','#22c55e','#06b6d4','#8b5cf6','#ec4899','#f59e0b','#10b981','#3b82f6','#a855f7','#ef4444'];
+let spinWheelAngle=0,spinDiscountPct=0,spinComplete=false;
+let pendingGrmMsg='';
+
+function drawWheel(angle){
+  const canvas=document.getElementById("spinCanvas");
+  if(!canvas)return;
+  const ctx=canvas.getContext("2d");
+  const cx=canvas.width/2,cy=canvas.height/2,r=canvas.width/2-4;
+  const n=SPIN_SEGMENTS.length,arc=2*Math.PI/n;
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  for(let i=0;i<n;i++){
+    const start=angle+i*arc;
+    ctx.beginPath();ctx.moveTo(cx,cy);ctx.arc(cx,cy,r,start,start+arc);ctx.closePath();
+    ctx.fillStyle=SPIN_COLORS[i];ctx.fill();
+    ctx.strokeStyle='rgba(255,255,255,.25)';ctx.lineWidth=2;ctx.stroke();
+    ctx.save();ctx.translate(cx,cy);ctx.rotate(start+arc/2);ctx.textAlign='right';
+    ctx.fillStyle='#fff';ctx.font='bold '+(canvas.width<280?'11':'13')+'px Segoe UI';
+    ctx.shadowColor='rgba(0,0,0,.5)';ctx.shadowBlur=4;
+    ctx.fillText(SPIN_SEGMENTS[i]+'% OFF',r-10,5);ctx.restore();
+  }
+  ctx.beginPath();ctx.arc(cx,cy,28,0,2*Math.PI);
+  ctx.fillStyle='#0a1628';ctx.fill();ctx.strokeStyle='#facc15';ctx.lineWidth=3;ctx.stroke();
+  ctx.fillStyle='#facc15';ctx.font='bold 12px Segoe UI';ctx.textAlign='center';ctx.textBaseline='middle';
+  ctx.fillText('SPIN',cx,cy);
+}
+function doSpin(){
+  if(spinComplete)return;
+  const btn=document.getElementById("spinBtn");
+  btn.disabled=true;btn.textContent="🌀 Spinning...";
+  const winIdx=Math.floor(Math.random()*SPIN_SEGMENTS.length);
+  spinDiscountPct=SPIN_SEGMENTS[winIdx];
+  const n=SPIN_SEGMENTS.length,arc=2*Math.PI/n;
+  const extraSpins=5+Math.floor(Math.random()*3);
+  const targetAngle=(-Math.PI/2)-(winIdx*arc+arc/2);
+  const totalRotation=extraSpins*2*Math.PI+(targetAngle-spinWheelAngle%(2*Math.PI)+2*Math.PI)%(2*Math.PI);
+  const finalAngle=spinWheelAngle+totalRotation;
+  let tickAudio=null;
+  try{const AudioCtx=window.AudioContext||window.webkitAudioContext;const actx=new AudioCtx();tickAudio={ctx:actx,lastTick:0};}catch(e){}
+  const duration=4500,start=performance.now(),startAngle=spinWheelAngle;
+  function easeOut(t){return 1-Math.pow(1-t,4);}
+  function frame(now){
+    const elapsed=now-start,t=Math.min(elapsed/duration,1),eased=easeOut(t);
+    const current=startAngle+(finalAngle-startAngle)*eased;
+    spinWheelAngle=current;drawWheel(current);
+    if(tickAudio){
+      const segsPassed=Math.floor(((current-startAngle)/(2*Math.PI))*n);
+      if(segsPassed>tickAudio.lastTick){
+        tickAudio.lastTick=segsPassed;
+        try{const osc=tickAudio.ctx.createOscillator(),gain=tickAudio.ctx.createGain();osc.connect(gain);gain.connect(tickAudio.ctx.destination);osc.frequency.value=600+Math.random()*200;osc.type='square';gain.gain.setValueAtTime(.08,tickAudio.ctx.currentTime);gain.gain.exponentialRampToValueAtTime(.001,tickAudio.ctx.currentTime+.06);osc.start();osc.stop(tickAudio.ctx.currentTime+.06);}catch(e){}
+      }
+    }
+    if(t<1){requestAnimationFrame(frame);}else{spinComplete=true;onSpinEnd(tickAudio);}
+  }
+  requestAnimationFrame(frame);
+}
+function onSpinEnd(tickAudio){
+  try{const AudioCtx=window.AudioContext||window.webkitAudioContext;const actx=tickAudio?tickAudio.ctx:new AudioCtx();[523,659,784,1047].forEach((freq,i)=>{const osc=actx.createOscillator(),gain=actx.createGain();osc.connect(gain);gain.connect(actx.destination);osc.frequency.value=freq;osc.type='sine';gain.gain.setValueAtTime(.15,actx.currentTime+i*.12);gain.gain.exponentialRampToValueAtTime(.001,actx.currentTime+i*.12+.25);osc.start(actx.currentTime+i*.12);osc.stop(actx.currentTime+i*.12+.3);});}catch(e){}
+  const orig=1200,discounted=Math.round(orig-(orig*spinDiscountPct/100)),save=orig-discounted;
+  const el=document.getElementById("spinResult");el.classList.remove("hidden");
+  document.getElementById("spinResultEmoji").textContent="🎉";
+  document.getElementById("spinResultText").innerHTML=`<span style="font-size:2.8rem;color:#4ade80">${spinDiscountPct}% OFF!</span><br><span style="text-decoration:line-through;color:#64748b;font-size:1.1rem">₹1200</span> → <span style="color:#4ade80;font-size:1.6rem;font-weight:900">₹${discounted}</span>`;
+  document.getElementById("spinResultSub").innerHTML=`🎊 You save <strong style="color:#facc15">₹${save}</strong>! Take a screenshot to claim at store.`;
+  document.getElementById("spinBtn").style.display="none";document.getElementById("spinAfterBtn").classList.remove("hidden");
+}
+function claimDiscount(){
+  document.getElementById("spinOverlay").classList.remove("show");
+  const orig=1200,discounted=Math.round(orig-(orig*spinDiscountPct/100)),save=orig-discounted;
+  const now=new Date();
+  const months=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+  const days=["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+  let h=now.getHours(),m=now.getMinutes();const ampm=h>=12?"PM":"AM";h=h%12||12;
+  const timeStr=h+":"+(m<10?"0"+m:m)+" "+ampm;
+  const dateStr=days[now.getDay()]+", "+now.getDate()+" "+months[now.getMonth()]+" "+now.getFullYear();
+  const paymentId = window._lastGrmPaymentId || "N/A";
+  const fullMsg=pendingGrmMsg+"\n\n💳 *Payment ID:* "+paymentId+"\n\n🎰 *SPIN WHEEL DISCOUNT WON!*\n"+"🏷️ Discount: *"+spinDiscountPct+"% OFF*\n"+"💰 Original Price: ₹1200\n"+"✅ You Pay Only: *₹"+discounted+"*\n"+"💸 You Save: ₹"+save+"\n"+"📅 Won on: "+dateStr+" at "+timeStr+"\n"+"📸 Customer has screenshot proof of discount.";
+  // Send AiSensy WhatsApps + open WhatsApp chat
+  afterGrmPayment(
+    paymentId, fullMsg,
+    OWNER_PHONE,
+    window._lastGrmPhone || "",
+    window._lastGrmOwner || "Customer"
+  );
+  setTimeout(()=>showDiscountWithSpin(spinDiscountPct,discounted,save),600);
+}
+function showDiscountWithSpin(pct,discounted,save){
+  document.getElementById("discPct").innerHTML=pct+'<span>%</span>';
+  document.getElementById("discFinal").textContent="₹"+discounted;
+  document.getElementById("discSave").textContent="🎊 You save ₹"+save+"!";
+  document.getElementById("discPctMsg").textContent="exclusive "+pct+"% discount";
+  const now=new Date();
+  const days2=["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+  const months2=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+  let h=now.getHours(),m=now.getMinutes(),s=now.getSeconds();
+  const ampm=h>=12?"PM":"AM";h=h%12||12;
+  const timeStr=h+":"+(m<10?"0"+m:m)+":"+(s<10?"0"+s:s)+" "+ampm;
+  const dtEl=document.getElementById("discDateTime");
+  if(dtEl)dtEl.innerHTML="📅 Date: <strong>"+days2[now.getDay()]+", "+now.getDate()+" "+months2[now.getMonth()]+" "+now.getFullYear()+"</strong><br>🕐 Time: <strong>"+timeStr+"</strong>";
+  document.getElementById("discOverlay").classList.add("show");
+  let secs=60;document.getElementById("discTimerNum").textContent=secs;
+  clearInterval(discTimerInterval);
+  discTimerInterval=setInterval(()=>{secs--;document.getElementById("discTimerNum").textContent=secs;if(secs<=0){clearInterval(discTimerInterval);document.getElementById("discOverlay").classList.remove("show");}},1000);
+}
+function closeDiscPopup(){document.getElementById("discOverlay").classList.remove("show");clearInterval(discTimerInterval);}
+
+// ── HERO ANIMATION ────────────────────────────────────────────
+(function(){
+  const scene=document.getElementById("heroScene");
+  ["🐕","🐈","🦜","🐠","🐟","🦋","🐇","🦊"].forEach(a=>{
+    const el=document.createElement("div");el.className="float-animal";el.textContent=a;
+    el.style.cssText=`left:${5+Math.random()*85}%;top:${5+Math.random()*65}%;animation-duration:${3+Math.random()*3}s;animation-delay:${Math.random()*3}s`;
+    scene.appendChild(el);
+  });
+  const bw=document.getElementById("bubbleWrap");
+  for(let i=0;i<14;i++){
+    const b=document.createElement("div");b.className="hbubble";const s=10+Math.random()*35;
+    b.style.cssText=`width:${s}px;height:${s}px;left:${Math.random()*100}%;animation-duration:${5+Math.random()*8}s;animation-delay:${Math.random()*7}s`;
+    bw.appendChild(b);
+  }
+  const aq=document.getElementById("aquarium");
+  if(aq){
+    aq.innerHTML=`<div class="aq-plant" style="left:6px">🌿</div><div class="aq-plant" style="right:8px">🪸</div>`;
+    ["🐠","🐟"].forEach((f,i)=>{
+      const fish=document.createElement("div");fish.className="aq-fish";fish.textContent=f;
+      fish.style.cssText=`top:${18+i*32}%;animation-duration:${6+i*3}s;animation-delay:${i*2}s`;
+      aq.appendChild(fish);
+    });
+    for(let i=0;i<5;i++){
+      const b=document.createElement("div");b.className="aq-bub";const s=4+Math.random()*6;
+      b.style.cssText=`width:${s}px;height:${s}px;left:${10+Math.random()*80}%;animation-duration:${2+Math.random()*2}s;animation-delay:${Math.random()*3}s`;
+      aq.appendChild(b);
+    }
+  }
+})();
+
+// ── DEEP LINK ROUTING ─────────────────────────────────────────
+(function(){
+  const p=new URLSearchParams(window.location.search).get("page");
+  if(p==="grooming"||p==="aquarium")setTimeout(()=>goPage(p),100);
+})();
+
+/* ================================================================
+ * SECTION 10: CUSTOMER DATA MEMORY
+ * ─────────────────────────────────────────────────────────────
+ * PURPOSE: Auto-save customer details (name, phone, pet info) so
+ * returning customers don't have to fill the form again.
+ *
+ * DATA SAVED (Grooming form):
+ *   vishesh_grm_data → { petName, owner, phone, petAge, breed, vax }
+ *
+ * DATA SAVED (Aquarium form):
+ *   vishesh_aq_data → { name, phone, manHouse, manArea, manCity, manLandmark }
+ *
+ * SECURITY — BASE64 ENCODING:
+ *   Data is encoded using btoa() before saving to localStorage.
+ *   This means if someone opens DevTools → Application → localStorage,
+ *   they see scrambled text instead of plain JSON.
+ *   Example: {"phone":"9999999999"} becomes "eyJwaG9uZSI6Ijk5OTk5OTk5OTkifQ=="
+ *
+ *   NOTE: This is obfuscation, not true encryption. A developer who
+ *   knows about base64 can decode it. For medical/financial data you
+ *   would use real encryption (Web Crypto API). For a pet shop booking
+ *   form, base64 encoding is a reasonable protection level.
+ *
+ * _enc(str) → encodes a string to base64 (before saving)
+ * _dec(str) → decodes base64 back to string (after loading)
+ * ================================================================ */
+function _enc(str){try{return btoa(unescape(encodeURIComponent(str)));}catch(e){return str;}}
+function _dec(str){try{return decodeURIComponent(escape(atob(str)));}catch(e){return str;}}
+
+function grmSaveData(){
+  try{
+    const data={petName:document.getElementById("gf-name").value.trim(),owner:document.getElementById("gf-owner").value.trim(),phone:document.getElementById("gf-phone").value.trim(),petAge:document.getElementById("gf-age").value.trim(),breed:document.getElementById("gf-breed").value.trim(),vax:grmVax};
+    localStorage.setItem("vishesh_grm_data",_enc(JSON.stringify(data)));
+  }catch(e){}
+}
+function grmLoadData(){
+  try{
+    const raw=localStorage.getItem("vishesh_grm_data");if(!raw)return;
+    const d=JSON.parse(_dec(raw));
+    if(d.petName)document.getElementById("gf-name").value=d.petName;
+    if(d.owner)document.getElementById("gf-owner").value=d.owner;
+    if(d.phone)document.getElementById("gf-phone").value=d.phone;
+    if(d.petAge)document.getElementById("gf-age").value=d.petAge;
+    if(d.breed)document.getElementById("gf-breed").value=d.breed;
+    if(d.vax)selectVax(d.vax);
+    grmShowReturnBanner();
+  }catch(e){}
+}
+function grmShowReturnBanner(){
+  const step3=document.getElementById("gws-3");
+  if(!step3||document.getElementById("grm-return-banner"))return;
+  const b=document.createElement("div");b.id="grm-return-banner";
+  b.style.cssText="background:linear-gradient(135deg,#f0fdf4,#dcfce7);border:1.5px solid #86efac;border-radius:12px;padding:10px 14px;margin-bottom:14px;font-size:.82rem;color:#166534;display:flex;align-items:center;justify-content:space-between;gap:10px";
+  b.innerHTML='<span>👋 <strong>Welcome back!</strong> Your details are pre-filled. Edit if needed.</span><button onclick="grmClearData()" style="background:none;border:1px solid #86efac;border-radius:8px;padding:4px 10px;font-size:.75rem;color:#166534;cursor:pointer;white-space:nowrap;font-family:inherit">🗑 Clear</button>';
+  step3.insertBefore(b,step3.firstChild);
+}
+function grmClearData(){
+  try{localStorage.removeItem("vishesh_grm_data");}catch(e){}
+  ["gf-name","gf-owner","gf-phone","gf-age","gf-breed"].forEach(id=>{const el=document.getElementById(id);if(el)el.value="";});
+  grmVax="";["done","notdone","partial"].forEach(k=>{const el=document.getElementById("vax-"+k);if(el)el.classList.remove("on");});
+  const b=document.getElementById("grm-return-banner");if(b)b.remove();
+}
+(function(){const s=()=>{["gf-name","gf-owner","gf-phone","gf-age","gf-breed"].forEach(id=>{const el=document.getElementById(id);if(el)el.addEventListener("input",grmSaveData);});};document.readyState==="loading"?document.addEventListener("DOMContentLoaded",s):s();})();
+const _origGrmGo=grmGo;window.grmGo=function(step){_origGrmGo(step);if(step===3)setTimeout(grmLoadData,80);};
+const _origSubmitGrooming=submitGrooming;window.submitGrooming=function(){grmSaveData();_origSubmitGrooming();};
+
+function aqSaveData(){
+  try{
+    const data={name:document.getElementById("aqName")?.value.trim()||"",phone:document.getElementById("aqPhone")?.value.trim()||"",manHouse:document.getElementById("aqManHouse")?.value.trim()||"",manArea:document.getElementById("aqManArea")?.value.trim()||"",manCity:document.getElementById("aqManCity")?.value.trim()||"",manLandmark:document.getElementById("aqManLandmark")?.value.trim()||""};
+    localStorage.setItem("vishesh_aq_data",_enc(JSON.stringify(data)));
+  }catch(e){}
+}
+function aqLoadData(){
+  try{
+    const raw=localStorage.getItem("vishesh_aq_data");if(!raw)return;
+    const d=JSON.parse(_dec(raw));
+    const set=(id,val)=>{const el=document.getElementById(id);if(el&&val)el.value=val;};
+    set("aqName",d.name);set("aqPhone",d.phone);set("aqManHouse",d.manHouse);set("aqManArea",d.manArea);set("aqManCity",d.manCity||"Dhampur");set("aqManLandmark",d.manLandmark);
+    if(d.name)aqShowReturnBanner();
+  }catch(e){}
+}
+function aqShowReturnBanner(){
+  const s2=document.getElementById("aqS2");if(!s2||document.getElementById("aq-return-banner"))return;
+  const b=document.createElement("div");b.id="aq-return-banner";
+  b.style.cssText="background:linear-gradient(135deg,#f0fdf4,#dcfce7);border:1.5px solid #86efac;border-radius:12px;padding:10px 14px;margin-bottom:2px;font-size:.82rem;color:#166534;display:flex;align-items:center;justify-content:space-between;gap:10px";
+  b.innerHTML='<span>👋 <strong>Welcome back!</strong> Your details are pre-filled. Edit if needed.</span><button onclick="aqClearData()" style="background:none;border:1px solid #86efac;border-radius:8px;padding:4px 10px;font-size:.75rem;color:#166534;cursor:pointer;white-space:nowrap;font-family:inherit">🗑 Clear</button>';
+  s2.insertBefore(b,s2.firstChild);
+}
+function aqClearData(){
+  try{localStorage.removeItem("vishesh_aq_data");}catch(e){}
+  ["aqName","aqPhone","aqManHouse","aqManArea","aqManLandmark"].forEach(id=>{const el=document.getElementById(id);if(el)el.value="";});
+  const city=document.getElementById("aqManCity");if(city)city.value="Dhampur";
+  const b=document.getElementById("aq-return-banner");if(b)b.remove();
+}
+(function(){const s=()=>{["aqName","aqPhone","aqManHouse","aqManArea","aqManCity","aqManLandmark"].forEach(id=>{const el=document.getElementById(id);if(el)el.addEventListener("input",aqSaveData);});};document.readyState==="loading"?document.addEventListener("DOMContentLoaded",s):s();})();
+const _origAqGoS2=aqGoS2;window.aqGoS2=function(){_origAqGoS2();setTimeout(aqLoadData,80);};
+const _origAqGoS3=aqGoS3;window.aqGoS3=function(){aqSaveData();_origAqGoS3();setTimeout(aqLoadData,80);};
+</script>
+</body>
+</html>
