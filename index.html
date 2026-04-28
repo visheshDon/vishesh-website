@@ -6,7 +6,7 @@
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
 <link rel="shortcut icon" href="/favicon.ico">
 <link rel="manifest" href="/site.webmanifest">
-  <meta name="google-site-verification" content="1jEHpoq-UwQ1VRQTkr1QHOvu7OJuYXK-8URTPbdo_YM" />  
+  <meta name="google-site-verification" content="1jEHpoq-UwQ1VRQTkr1QHOvu7OJuYXK-8URTPbdo_YM" />
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
 <title>Vishesh Aquaworld & Pet Showroom — Dhampur</title>
@@ -1027,7 +1027,7 @@ footer{background:var(--navy);padding:36px 5% 18px;color:#64748b}
  */
 
 // ── STEP 1: REPLACE THESE VALUES ──────────────────────────────
-const RAZORPAY_KEY_ID = 'rzp_test_Siv8BS4ITdZLf7'; // ← Your Razorpay Key ID (test or live)
+const RAZORPAY_KEY_ID     = 'rzp_test_XXXXXXXXXXXXXXXX'; // ← Your Razorpay Key ID (test or live)
 const AISENSY_API_KEY     = 'YOUR_AISENSY_API_KEY';       // ← Your AiSensy API key
 const AISENSY_SOURCE      = 'AiSensy-WA-Msg-3p';         // Leave as-is
 const OWNER_PHONE         = '918218178036';               // Your WhatsApp number (with country code)
@@ -1077,10 +1077,12 @@ function openRazorpay(opts) {
     currency: "INR",
     name: "Vishesh Aquaworld & Pet Showroom",
     description: opts.description || "Service Booking",
-    image: "",                    // Optional: add your logo URL here
     prefill: {
       name: opts.name || "",
       contact: opts.phone || ""
+    },
+    notes: {
+      address: "Seohara Road, Dhampur, UP"
     },
     theme: { color: "#0e7490" },
     handler: function(response) {
@@ -1092,12 +1094,15 @@ function openRazorpay(opts) {
     modal: {
       ondismiss: function() {
         console.log("Payment popup closed by user");
-      }
+      },
+      escape: true,
+      animation: true
     }
   };
   const rzp = new Razorpay(options);
   rzp.on('payment.failed', function(response) {
-    alert("❌ Payment failed: " + response.error.description + "\nPlease try again.");
+    console.error("Payment failed:", response.error);
+    alert("❌ Payment failed: " + (response.error.description || "Please try again."));
   });
   rzp.open();
 }
